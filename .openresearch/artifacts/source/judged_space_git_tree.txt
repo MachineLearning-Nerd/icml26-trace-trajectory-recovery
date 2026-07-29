@@ -1,0 +1,17 @@
+Protected revision: DineshAI/xRN1Ym2hoa@8336cbc2a29260f27248e11b9c48f1bb0a7f2266
+Manifest created before any candidate copy was modified.
+
+100644 blob a6344aac8c09253b3b630fb776ae94478aa0275b	.gitattributes
+100644 blob 8e5b2d08f7149bd398b7c5d3d1324d4b33e2dac2	README.md
+100644 blob b7ce1dac0d70d7ca8e392aff3a534b756041708d	bucket-icon.svg
+100644 blob 177388c59bcb06d85d4d86bbb7e293609ab0e5d3	index.html
+100644 blob 2a9f174dac3117978fa2279dacebce2185fe6694	logbook.css
+100644 blob 8493abfc9d816bf6c220cca35233ca89bab143e6	logbook.js
+100644 blob ba3fe358a3c35a6b62eb12ee0e38ad37358ce754	logbook.json
+100644 blob 30241c3d91bd443eeda3b3063c55240703b5b44f	pages/index.md
+100644 blob b6cd5655c8ad47ed298d9530d3ac9d1af4c65f8c	pages/overview/page.md
+100644 blob 114adf441e9032febb46bc056b2a8bb651075f0d	style.css
+100644 blob b3438262c61989e6c6d16df4801a8935136115b3	trackio-logo-light.png
+100644 blob e6ff7e0a3580bca040d9ec3ea8c91e8cca469e61	trackio-logo.png
+100644 blob 2495f610c975917290b57706133b38621a58cb8b	trackio-wordmark-dark.png
+

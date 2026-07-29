@@ -1,0 +1,15 @@
+{
+  "dataset": "ICML-2026-agent-repro/verdicts",
+  "dataset_revision": "ee34b94136b879bada2e1f224520e2caf3d4cf17",
+  "verdicts_json_sha256": "5b44b6f664a36e30e0e91ebb6b2f2dee951d93afe4afe82db8f350a743e7e9ff",
+  "filter": {
+    "field": "space_id",
+    "equals": "DineshAI/xRN1Ym2hoa"
+  },
+  "matched_space_id": "DineshAI/xRN1Ym2hoa",
+  "judged_space_revision": "8336cbc2a29260f27248e11b9c48f1bb0a7f2266",
+  "judged_at": "2026-07-29T06:57:05+00:00",
+  "score": "4/12",
+  "quality": "low"
+}
+

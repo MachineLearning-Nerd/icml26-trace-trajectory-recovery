@@ -1,0 +1,44 @@
+#########################
+# Inference Paths Config #
+#########################
+
+# Dataset paths
+DATASETS:
+    ROOT: './datasets'
+    5_DOMAINS: './datasets/5_domains'
+    10_DOMAINS: './datasets/10_domains'
+
+# Checkpoint paths
+CHECKPOINTS:
+    5_DOMAINS: './log/best-epoch=50-val_mcc=0.9644.ckpt'
+    10_DOMAINS: './log/best-epoch=99-val_mcc=0.9898.ckpt'
+
+# Model configs
+MODELS:
+    5_DOMAINS:
+        NCLASS: 5
+        EMBED_DIM: 2
+        INPUT_DIM: 8
+        Z_DIM: 8
+        LAG: 2
+        HIDDEN_DIM: 128
+    10_DOMAINS:
+        NCLASS: 10
+        EMBED_DIM: 8
+        INPUT_DIM: 8
+        Z_DIM: 8
+        LAG: 2
+        HIDDEN_DIM: 128
+
+# Output paths
+OUTPUT:
+    RESULTS: './results'
+
+# Trajectory generation config
+TRAJECTORY:
+    TIMESTEPS: 50
+    BATCH_SIZE: 500
+    N_SAMPLES: 1
+    SEED: 42
+    DEFAULT_K_ACTIVE: 3
+    DEFAULT_TYPES: ['simple', 'medium', 'complex']

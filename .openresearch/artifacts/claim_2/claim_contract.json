@@ -1,0 +1,21 @@
+{
+  "claim_id": 2,
+  "source_anchor": "Theorem 4.3 and Equation (7), arXiv:2601.21135v2",
+  "exact_statement_tested": "For every length-T trajectory with TV(alpha*) <= V and iid sub-Gaussian noise sigma, the stated quadratic regularized estimator with lambda asymptotic to T^(1/3) has mean squared error bounded by the displayed O((V/T)^(2/3)) stochastic term plus delta_approx^2/sigma_min^2.",
+  "quantifier_target": "The theorem's class includes V=0 constant trajectories.",
+  "test_instance": {
+    "d": 1,
+    "K": 2,
+    "T": 64,
+    "alpha": [0.5, 0.5],
+    "V": 0,
+    "sigma": 0.5,
+    "B": [[1.0]],
+    "sigma_min": 1,
+    "delta_approx": 0
+  },
+  "acceptance_rule": "FALSIFIED iff every stated assumption is audited, the printed RHS is exactly zero, and the exact estimator risk is strictly positive; the zero-noise control must not trigger the counterexample.",
+  "non_circularity": "T=64 is a fixed diagnostic horizon, not selected from the claimed rate. The contradiction holds for every finite T>=2 and every sigma>0.",
+  "pending_baseline_run": true
+}
+
