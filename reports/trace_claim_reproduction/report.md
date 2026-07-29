@@ -1,6 +1,6 @@
 # TRACE on CPU: exact contradictions, learned tests, and release gaps
 
-![](images/theorem43_counterexample.svg)
+![The displayed Theorem 4.3 right-hand side is zero while exact and independent risks remain positive.](images/theorem43_counterexample.svg)
 
 TRACE asks whether a causal representation learner can recover a mechanism
 that moves continuously between atomic dynamics. This reproduction separates
@@ -69,7 +69,7 @@ released.
 
 ## A recovery metric that ignores time
 
-![](images/w_metric_blind_spot.svg)
+![A constant trajectory prediction retains a 0.998742 full-W correlation despite losing all temporal signal.](images/w_metric_blind_spot.svg)
 
 Claim 6 says full `W(t)` correlation stays above `0.995` even when alpha
 recovery degrades. The released scorer correlates flattened full matrices,
@@ -93,7 +93,7 @@ absent.
 
 ## Real-data release audit
 
-![](images/release_capability_matrix.svg)
+![Capability audit for the released UAVDT and CMU MoCap reproduction assets.](images/release_capability_matrix.svg)
 
 The released package has no UAVDT implementation, real-data checkpoint, or
 exact frame manifest. Its MoCap script expects an absent
@@ -123,7 +123,7 @@ MoCap results. They do not falsify those finite values.
 
 ## Compute and reproducibility
 
-![](images/cpu_feasibility.svg)
+![Measured CPU runtimes separate short local audits from long Hugging Face cpu-upgrade jobs.](images/cpu_feasibility.svg)
 
 Short deterministic checks use local CPU and finish within five minutes.
 Uncertain or long work uses Hugging Face `cpu-upgrade`; containers expose 64
