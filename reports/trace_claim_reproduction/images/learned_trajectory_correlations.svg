@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-label="Fifteen paper-scale learned TRACE trajectory correlations. All family means exceed 0.94 and the overall mean is 0.9736.">
+<rect width="960" height="520" fill="#fbfaf7"/>
+<text x="480" y="40" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" fill="#172033">Learned TRACE recovers unseen trajectories</text>
+<text x="480" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">d=8, 200,000 pure-state sequences, 100 epochs, five evaluation seeds</text>
+<rect x="100" y="148.0" width="720" height="252.0" fill="#dcfce7" opacity="0.55"/>
+<text x="760" y="143" text-anchor="end" font-family="sans-serif" font-size="12" fill="#166534">paper 0.94 ± 0.05 band</text>
+<line x1="100" y1="400.0" x2="820" y2="400.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="405.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">0.90</text>
+<line x1="100" y1="344.0" x2="820" y2="344.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="349.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">0.92</text>
+<line x1="100" y1="288.0" x2="820" y2="288.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="293.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">0.94</text>
+<line x1="100" y1="232.0" x2="820" y2="232.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="237.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">0.96</text>
+<line x1="100" y1="176.0" x2="820" y2="176.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="181.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">0.98</text>
+<line x1="100" y1="120.0" x2="820" y2="120.0" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="125.0" text-anchor="end" font-family="sans-serif" font-size="13" fill="#475569">1.00</text>
+<circle cx="172" cy="160.3" r="6" fill="#0f766e" opacity="0.72"/>
+<circle cx="186" cy="169.5" r="6" fill="#0f766e" opacity="0.72"/>
+<circle cx="200" cy="153.9" r="6" fill="#0f766e" opacity="0.72"/>
+<circle cx="214" cy="164.1" r="6" fill="#0f766e" opacity="0.72"/>
+<circle cx="228" cy="139.6" r="6" fill="#0f766e" opacity="0.72"/>
+<line x1="156" y1="157.5" x2="244" y2="157.5" stroke="#0f766e" stroke-width="5"/>
+<text x="200" y="437" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#0f766e">Simple</text>
+<text x="200" y="461" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#334155">mean 0.9866</text>
+<circle cx="422" cy="153.9" r="6" fill="#2563eb" opacity="0.72"/>
+<circle cx="436" cy="181.4" r="6" fill="#2563eb" opacity="0.72"/>
+<circle cx="450" cy="166.3" r="6" fill="#2563eb" opacity="0.72"/>
+<circle cx="464" cy="168.0" r="6" fill="#2563eb" opacity="0.72"/>
+<circle cx="478" cy="150.5" r="6" fill="#2563eb" opacity="0.72"/>
+<line x1="406" y1="164.0" x2="494" y2="164.0" stroke="#2563eb" stroke-width="5"/>
+<text x="450" y="437" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#2563eb">Medium</text>
+<text x="450" y="461" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#334155">mean 0.9843</text>
+<circle cx="672" cy="253.9" r="6" fill="#9333ea" opacity="0.72"/>
+<circle cx="686" cy="229.3" r="6" fill="#9333ea" opacity="0.72"/>
+<circle cx="700" cy="256.4" r="6" fill="#9333ea" opacity="0.72"/>
+<circle cx="714" cy="252.4" r="6" fill="#9333ea" opacity="0.72"/>
+<circle cx="728" cy="310.5" r="6" fill="#9333ea" opacity="0.72"/>
+<line x1="656" y1="260.5" x2="744" y2="260.5" stroke="#9333ea" stroke-width="5"/>
+<text x="700" y="437" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#9333ea">Complex</text>
+<text x="700" y="461" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#334155">mean 0.9498</text>
+<line x1="100" y1="400" x2="820" y2="400" stroke="#172033" stroke-width="2"/>
+<line x1="100" y1="120" x2="100" y2="400" stroke="#172033" stroke-width="2"/>
+<text x="480" y="500" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#172033">Overall mean = 0.973566; dots are seeds, bars are family means</text>
+</svg>

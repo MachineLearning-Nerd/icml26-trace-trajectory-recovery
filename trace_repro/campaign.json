@@ -2,12 +2,18 @@
   "schema_version": 1,
   "enabled_checks": [
     "claim_2_theorem_4_3",
-    "claim_3_paper_scale_learned"
+    "claim_3_paper_scale_learned",
+    "claim_6_w_metric_audit",
+    "claim_6_final_assessment",
+    "claim_4_release_audit",
+    "claim_3_nctrl_release_audit",
+    "claim_1_attribution",
+    "release_visibility_audit"
   ],
   "paper_id": "2601.21135v2",
   "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
   "selected_compute_backend": "hf",
   "selected_compute_flavor": "cpu-upgrade",
   "estimated_cores": 4,
-  "runtime_estimate": "exact 100-epoch paper-scale learned run via equivalent diagonal Jacobian: 2.58 hours on 4 Torch threads, calibrated independently from one full epoch"
+  "runtime_estimate": "cumulative six-claim regression including exact 100-epoch learned TRACE: approximately 3.1 hours on 4 Torch threads plus deterministic audits"
 }

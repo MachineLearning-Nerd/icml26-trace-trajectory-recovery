@@ -1,0 +1,105 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "permuted_time_mean_corr_below_0_50": true,
+    "permuted_time_simple_corr_below_0_50": true
+  },
+  "expected_exit_code": 1,
+  "mean_correlation": -0.07591822910341413,
+  "method": "deterministic permutation of predicted time indices before independent correlation recomputation",
+  "negative_control": true,
+  "rows": [
+    {
+      "correlation": -0.1617432710973438,
+      "seed": 42,
+      "stored_correlation": 0.9856190689708333,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": -0.025622310861204704,
+      "seed": 142,
+      "stored_correlation": 0.982316358476803,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": -0.10191900837885363,
+      "seed": 242,
+      "stored_correlation": 0.9878950395887501,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.059565114635873016,
+      "seed": 342,
+      "stored_correlation": 0.9842473344945794,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": -0.15552037622345055,
+      "seed": 442,
+      "stored_correlation": 0.9929879742303981,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": -0.09982968869131074,
+      "seed": 42,
+      "stored_correlation": 0.9879060232715936,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": -0.15961598814354958,
+      "seed": 142,
+      "stored_correlation": 0.9780686632595108,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": -0.023826443076794376,
+      "seed": 242,
+      "stored_correlation": 0.9834514989521096,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": -0.10703379497819128,
+      "seed": 342,
+      "stored_correlation": 0.9828439767801043,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": -0.06104006286952476,
+      "seed": 442,
+      "stored_correlation": 0.989092663966367,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": -0.056413513868903635,
+      "seed": 42,
+      "stored_correlation": 0.9521626947575513,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": -0.023785302179254036,
+      "seed": 142,
+      "stored_correlation": 0.9609531816869854,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": -0.09063535833123938,
+      "seed": 242,
+      "stored_correlation": 0.9512742929349821,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": -0.169053042352399,
+      "seed": 342,
+      "stored_correlation": 0.9527185195351039,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": 0.03769960986493478,
+      "seed": 442,
+      "stored_correlation": 0.9319533154399707,
+      "trajectory": "complex"
+    }
+  ],
+  "schema_version": 1,
+  "simple_mean_correlation": -0.07704797038499593
+}

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="590" viewBox="0 0 1100 590" role="img" aria-labelledby="title desc">
+  <title id="title">Released capability matrix for blocked empirical claims</title>
+  <desc id="desc">Matching soft NCTRL, UAVDT, and MoCap reproduction capabilities are absent.</desc>
+  <rect width="1100" height="590" rx="20" fill="#101827"/>
+  <text x="60" y="66" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">Why the comparator and real-data claims are blocked</text>
+  <text x="60" y="104" fill="#9fb0c8" font-family="Inter,Arial,sans-serif" font-size="18">Matching released capability, not general dataset availability</text>
+  <g fill="#9fb0c8" font-family="Inter,Arial,sans-serif" font-size="16" text-anchor="middle">
+    <text x="460" y="158">code</text>
+    <text x="620" y="158">exact data</text>
+    <text x="780" y="158">checkpoint</text>
+    <text x="940" y="158">matching protocol</text>
+  </g>
+  <g fill="#dce7f5" font-family="Inter,Arial,sans-serif" font-size="18">
+    <text x="60" y="224">NCTRL hard</text>
+    <text x="60" y="306">NCTRL soft</text>
+    <text x="60" y="388">UAVDT</text>
+    <text x="60" y="470">CMU MoCap</text>
+  </g>
+  <g stroke="#314158" stroke-width="1">
+    <line x1="360" y1="178" x2="1020" y2="178"/>
+    <line x1="360" y1="260" x2="1020" y2="260"/>
+    <line x1="360" y1="342" x2="1020" y2="342"/>
+    <line x1="360" y1="424" x2="1020" y2="424"/>
+    <line x1="360" y1="506" x2="1020" y2="506"/>
+  </g>
+  <g font-family="Inter,Arial,sans-serif" font-size="15" text-anchor="middle">
+    <rect x="390" y="190" width="140" height="48" rx="8" fill="#9a6b16"/><text x="460" y="220" fill="#fff3c4">upstream only</text>
+    <rect x="550" y="190" width="140" height="48" rx="8" fill="#832f3b"/><text x="620" y="220" fill="#ffe5e8">no</text>
+    <rect x="710" y="190" width="140" height="48" rx="8" fill="#832f3b"/><text x="780" y="220" fill="#ffe5e8">no</text>
+    <rect x="870" y="190" width="140" height="48" rx="8" fill="#832f3b"/><text x="940" y="220" fill="#ffe5e8">no</text>
+    <rect x="390" y="272" width="140" height="48" rx="8" fill="#832f3b"/><text x="460" y="302" fill="#ffe5e8">no</text>
+    <rect x="550" y="272" width="140" height="48" rx="8" fill="#832f3b"/><text x="620" y="302" fill="#ffe5e8">no</text>
+    <rect x="710" y="272" width="140" height="48" rx="8" fill="#832f3b"/><text x="780" y="302" fill="#ffe5e8">no</text>
+    <rect x="870" y="272" width="140" height="48" rx="8" fill="#832f3b"/><text x="940" y="302" fill="#ffe5e8">no</text>
+    <rect x="390" y="354" width="140" height="48" rx="8" fill="#832f3b"/><text x="460" y="384" fill="#ffe5e8">no</text>
+    <rect x="550" y="354" width="140" height="48" rx="8" fill="#832f3b"/><text x="620" y="384" fill="#ffe5e8">no</text>
+    <rect x="710" y="354" width="140" height="48" rx="8" fill="#832f3b"/><text x="780" y="384" fill="#ffe5e8">no</text>
+    <rect x="870" y="354" width="140" height="48" rx="8" fill="#832f3b"/><text x="940" y="384" fill="#ffe5e8">no</text>
+    <rect x="390" y="436" width="140" height="48" rx="8" fill="#9a6b16"/><text x="460" y="466" fill="#fff3c4">train only</text>
+    <rect x="550" y="436" width="140" height="48" rx="8" fill="#832f3b"/><text x="620" y="466" fill="#ffe5e8">no</text>
+    <rect x="710" y="436" width="140" height="48" rx="8" fill="#832f3b"/><text x="780" y="466" fill="#ffe5e8">no</text>
+    <rect x="870" y="436" width="140" height="48" rx="8" fill="#832f3b"/><text x="940" y="466" fill="#ffe5e8">no</text>
+  </g>
+  <text x="60" y="552" fill="#9fb0c8" font-family="Inter,Arial,sans-serif" font-size="16">Absence blocks verification; it is not a numerical falsification.</text>
+</svg>

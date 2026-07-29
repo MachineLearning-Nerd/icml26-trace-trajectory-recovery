@@ -1,0 +1,14 @@
+{
+  "checkpoint_present": false,
+  "claim_id": 6,
+  "control": "complete evidence injected",
+  "projected_100_epoch_hours": 295.0,
+  "reason": "The released full-W metric is non-discriminative, but that does not contradict the printed learned-model values. Exact learned K=10 predictions cannot be regenerated without the absent checkpoint or approximately 295 CPU-hours of authorized training.",
+  "route_1_unrelated_alpha_inconclusive": true,
+  "route_2_zero_temporal_signal_metric_pathology": true,
+  "route_3_exact_training_unavailable_within_cpu_window": false,
+  "route_4_valid_counterexample_found": false,
+  "routes_completed": 4,
+  "schema_version": 1,
+  "verdict": "NOT_BLOCKED"
+}

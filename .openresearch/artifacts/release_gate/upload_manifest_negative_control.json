@@ -1,0 +1,13 @@
+{
+  "all_checks_passed": false,
+  "allowlisted_path_count": 87,
+  "checks": {
+    "allowlist_matches_overlay_path_set": true,
+    "every_allowlisted_file_is_utf8_text": true,
+    "every_hash_matches": false,
+    "manifest_matches_allowlist_path_set": true
+  },
+  "expected_exit_code": 1,
+  "negative_control": true,
+  "schema_version": 1
+}

@@ -1,4 +1,4 @@
-# Official TRACE CPU calibration
+# Historical K=5 TRACE CPU calibration
 
 This node executes one epoch of the released five-domain TRACE model solely to
 measure CPU throughput before deciding whether the exact 100-epoch experiment

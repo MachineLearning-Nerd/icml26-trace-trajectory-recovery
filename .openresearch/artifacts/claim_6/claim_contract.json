@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "claim_id": 6,
+  "paper": "2601.21135v2",
+  "source_anchor": "Section 6.5 and Appendix E.4 Table 12",
+  "paper_statement": "For K_total=10, d=8 and complex trajectories, alpha recovery falls from 0.979+/-0.003 at K_active=2 to 0.459+/-0.052 at K_active=7 while W recovery remains 1.000 and 0.998 respectively; all reported W correlations are at least 0.995.",
+  "audit_contract": {
+    "question": "Can the released global W correlation distinguish a recovered trajectory from a constant prediction with exactly zero temporal signal?",
+    "paper_scale": "d=8, K_total=10, K_active=2..10, T=50, all three released trajectory families, five deterministic repetitions",
+    "primary_success": "At the headline K_active=7 complex setting, the constant prediction has alpha MAE>0.05 and both alpha and W temporal-variation ratios below 1e-12, yet released global W correlation>=0.995.",
+    "negative_control": "Substituting the exact true alpha must not trigger the pathology verifier and must exit 1.",
+    "independent_checker": "Reconstruct the released matrices and metric using a separate implementation with manual Pearson correlation and direct temporal-norm ratios."
+  },
+  "claim_verdict_after_four_routes": "BLOCKED",
+  "reason": "The metric audit invalidates full-W correlation as discriminative trajectory evidence but does not contradict the printed learned-model values. The referenced checkpoint is absent and measured CPU throughput projects about 295 hours for exact 100-epoch regeneration."
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "paper_id": "2601.21135v2",
+  "claim": "TRACE reports UAVDT vehicle-turn correlation 0.960 versus NCTRL 0.239, and CMU MoCap displayed trial 127_37 correlation 0.917 (aggregate 0.856 +/- 0.043), while NCTRL produces spurious transitions.",
+  "full_credit_rule": "VERIFIED requires the exact selected raw sequences, preprocessing and proxies, trained models, TRACE and NCTRL inference, uncertainty, raw outputs, and independent recomputation. FALSIFIED requires an exact-protocol result or valid counterexample; missing assets are not falsification.",
+  "current_verdict": "BLOCKED",
+  "routes_required_for_low_confidence_release": 4
+}

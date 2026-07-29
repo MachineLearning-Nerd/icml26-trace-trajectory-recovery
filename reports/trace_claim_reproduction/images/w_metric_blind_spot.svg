@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">The released full-W metric passes a zero-temporal-signal control</title>
+  <desc id="desc">Constant alpha obtains correlation 0.998742 despite zero temporal variation and substantial innovation error.</desc>
+  <rect width="1100" height="560" rx="20" fill="#101827"/>
+  <text x="70" y="68" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700">A no-trajectory prediction clears the paper's W threshold</text>
+  <text x="70" y="108" fill="#9fb0c8" font-family="Inter,Arial,sans-serif" font-size="18">Exact released d=8 · K_total=10 · K_active=7 · complex trajectory geometry</text>
+  <text x="70" y="176" fill="#dce7f5" font-family="Inter,Arial,sans-serif" font-size="20">Released full-W correlation</text>
+  <rect x="70" y="202" width="600" height="52" rx="10" fill="#25364c"/>
+  <rect x="70" y="202" width="599" height="52" rx="10" fill="#34d399"/>
+  <line x1="667" y1="184" x2="667" y2="272" stroke="#fbbf24" stroke-width="4"/>
+  <text x="667" y="298" fill="#fbbf24" font-family="Inter,Arial,sans-serif" font-size="16" text-anchor="middle">paper threshold 0.995</text>
+  <text x="682" y="237" fill="#f8fafc" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" font-weight="700">0.998742</text>
+  <rect x="70" y="352" width="290" height="128" rx="14" fill="#17243a"/>
+  <rect x="405" y="352" width="290" height="128" rx="14" fill="#17243a"/>
+  <rect x="740" y="352" width="290" height="128" rx="14" fill="#17243a"/>
+  <g font-family="Inter,Arial,sans-serif" text-anchor="middle">
+    <text x="215" y="390" fill="#9fb0c8" font-size="16">temporal W variation</text>
+    <text x="215" y="446" fill="#38bdf8" font-size="32" font-weight="700">≈ 0</text>
+    <text x="550" y="390" fill="#9fb0c8" font-size="16">relative innovation error</text>
+    <text x="550" y="446" fill="#ff6b6b" font-size="32" font-weight="700">0.590881</text>
+    <text x="885" y="390" fill="#9fb0c8" font-size="16">alpha MAE</text>
+    <text x="885" y="446" fill="#fbbf24" font-size="32" font-weight="700">0.093294</text>
+  </g>
+  <text x="70" y="526" fill="#9fb0c8" font-family="Inter,Arial,sans-serif" font-size="16">Independent matrix reconstruction and manual Pearson calculation agree.</text>
+</svg>

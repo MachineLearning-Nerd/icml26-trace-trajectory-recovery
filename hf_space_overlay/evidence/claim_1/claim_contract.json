@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "paper_id": "2601.21135v2",
+  "exact_claim_tested": "Theorem 4.1 establishes joint identifiability of the latent variables and the continuous mixing trajectory.",
+  "verdict_rule": "FALSIFIED if the pinned paper states Theorem 4.1 has only a latent-variable conclusion and explicitly says it does not address mixing-trajectory inference.",
+  "negative_control": "Attribute the two conclusions jointly to Theorems 4.1-4.3; this corrected attribution must not be contradicted and exits 1.",
+  "universal_latent_theorem_status": "BLOCKED absent a machine-checkable proof certificate or valid assumption-satisfying counterexample"
+}

@@ -8,16 +8,46 @@
     "icml2026-repro",
     "paper-xRN1Ym2hoa"
   ],
-  "updated_at": "2026-07-29T08:10:00+00:00",
+  "updated_at": "2026-07-29T18:28:10+00:00",
   "root": {
     "slug": "index",
     "title": "TRACE claim-by-claim reproduction",
     "file": "pages/index.md",
     "children": [
       {
+        "slug": "current-claim-1",
+        "title": "Claim 1 — exact theorem-attribution audit",
+        "file": "pages/current/claim-1.md",
+        "children": []
+      },
+      {
         "slug": "current-claim-2",
         "title": "Claim 2 — exact Theorem 4.3 counterexample",
         "file": "pages/current/claim-2.md",
+        "children": []
+      },
+      {
+        "slug": "current-claim-3",
+        "title": "Claim 3 — learned TRACE and NCTRL comparison",
+        "file": "pages/current/claim-3.md",
+        "children": []
+      },
+      {
+        "slug": "current-claim-4",
+        "title": "Claim 4 — UAVDT and CMU MoCap release audit",
+        "file": "pages/current/claim-4.md",
+        "children": []
+      },
+      {
+        "slug": "current-claim-5",
+        "title": "Claim 5 — unseen intermediate mechanism states",
+        "file": "pages/current/claim-5.md",
+        "children": []
+      },
+      {
+        "slug": "current-claim-6",
+        "title": "Claim 6 — geometric bottleneck and W-recovery metric",
+        "file": "pages/current/claim-6.md",
         "children": []
       },
       {
@@ -29,6 +59,5 @@
     ]
   },
   "agent_view_tokens": 1500,
-  "revision": "candidate-claim2"
+  "revision": "unpublished-learned-release-candidate"
 }
-

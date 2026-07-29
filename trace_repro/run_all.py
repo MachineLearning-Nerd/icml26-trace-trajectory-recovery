@@ -91,6 +91,31 @@ def main() -> int:
             negative=True,
         ),
     ]
+    if "claim_6_w_metric_audit" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "claim6_w_metric_primary",
+                    "trace_repro.claim6_w_metric",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_w_metric_truth_control",
+                    "trace_repro.claim6_w_metric",
+                    negative=True,
+                ),
+                invoke(
+                    "claim6_w_metric_independent",
+                    "trace_repro.claim6_independent",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_w_metric_independent_truth_control",
+                    "trace_repro.claim6_independent",
+                    negative=True,
+                ),
+            ]
+        )
     if "claim_3_paper_scale_learned" in CONFIG["enabled_checks"]:
         records.append(
             invoke(
@@ -128,6 +153,112 @@ def main() -> int:
                 "trace_repro.claim3_official_cpu",
                 negative=False,
             )
+        )
+    if "claim_6_final_assessment" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "claim6_final_assessment",
+                    "trace_repro.claim6_final_assessment",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_final_complete_evidence_control",
+                    "trace_repro.claim6_final_assessment",
+                    negative=True,
+                ),
+            ]
+        )
+    if "claim_4_release_audit" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim4_release_audit",
+                "trace_repro.claim4_release_audit",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim4_release_audit_negative_control",
+                "trace_repro.claim4_release_audit",
+                negative=True,
+            )
+        )
+        records.append(
+            invoke(
+                "claim4_release_independent",
+                "trace_repro.claim4_release_independent",
+                negative=False,
+            )
+        )
+    if "claim_3_nctrl_release_audit" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim3_nctrl_release_audit",
+                "trace_repro.claim3_nctrl_audit",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim3_nctrl_complete_release_control",
+                "trace_repro.claim3_nctrl_audit",
+                negative=True,
+            )
+        )
+        records.append(
+            invoke(
+                "claim3_nctrl_independent",
+                "trace_repro.claim3_nctrl_independent",
+                negative=False,
+            )
+        )
+    if "claim_1_attribution" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim1_exact_attribution",
+                "trace_repro.claim1_attribution",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim1_corrected_attribution_control",
+                "trace_repro.claim1_attribution",
+                negative=True,
+            )
+        )
+        records.append(
+            invoke(
+                "claim1_attribution_independent",
+                "trace_repro.claim1_independent",
+                negative=False,
+            )
+        )
+    if "release_visibility_audit" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "release_visibility_primary",
+                    "trace_repro.release_visibility_audit",
+                    negative=False,
+                ),
+                invoke(
+                    "release_visibility_missing_raw_control",
+                    "trace_repro.release_visibility_audit",
+                    negative=True,
+                ),
+                invoke(
+                    "release_upload_manifest_primary",
+                    "trace_repro.release_upload_check",
+                    negative=False,
+                ),
+                invoke(
+                    "release_upload_manifest_hash_control",
+                    "trace_repro.release_upload_check",
+                    negative=True,
+                ),
+            ]
         )
     total_runtime = time.perf_counter() - campaign_started
     summary = {

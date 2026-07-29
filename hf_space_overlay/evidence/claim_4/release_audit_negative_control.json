@@ -1,0 +1,78 @@
+{
+  "audit": {
+    "checks": {
+      "mocap_evaluation_code_absent": false,
+      "mocap_preprocessing_code_absent": false,
+      "paper_release_mocap_defaults_disagree": true,
+      "pretrained_checkpoints_absent": false,
+      "real_data_absent": false,
+      "uavdt_preprocess_or_evaluation_code_absent": false
+    },
+    "found": {
+      "checkpoints": [
+        "checkpoints/uavdt.ckpt",
+        "checkpoints/mocap.ckpt"
+      ],
+      "mocap_evaluation": [
+        "scripts/eval_mocap.py"
+      ],
+      "mocap_preprocessing": [
+        "scripts/preprocess_mocap.py"
+      ],
+      "real_data": [
+        "datasets/mocap/walk_run_data.npz"
+      ],
+      "uav_code": [
+        "scripts/preprocess_uavdt.py",
+        "scripts/eval_uavdt.py"
+      ]
+    },
+    "official_trace_source_sha": "f71d7ed89f721cfe4a134cf04be0e6a05795e4b6",
+    "paper_protocol": {
+      "batch_size": 128,
+      "epochs": 100,
+      "hidden_dim": 256,
+      "lag": 3
+    },
+    "protocol_mismatches": {
+      "batch_size": {
+        "paper": 128,
+        "release_default": 64
+      },
+      "epochs": {
+        "paper": 100,
+        "release_default": 200
+      },
+      "hidden_dim": {
+        "paper": 256,
+        "release_default": 128
+      },
+      "lag": {
+        "paper": 3,
+        "release_default": 2
+      }
+    },
+    "readme_sha256": "9769ffb9b259d27e170c0e54ba51a6b151af167090d1ecf04eadcf95b3f0f1b2",
+    "release_file_count": 46,
+    "release_incompleteness_established": false,
+    "release_manifest_sha256": "e3f799e8bbe8568804537f3416ac08e3acdee32c68a1f6d0db4375bfc7194e3f",
+    "released_mocap_defaults": {
+      "batch_size": 64,
+      "epochs": 200,
+      "hidden_dim": 128,
+      "lag": 2
+    }
+  },
+  "audit_completed": false,
+  "claim": "UAVDT 0.960 vs NCTRL 0.239 and CMU MoCap 0.917 displayed trial / 0.856 +/- 0.043 aggregate",
+  "claim_verdict": "BLOCKED",
+  "counterexample_established": false,
+  "negative_control": true,
+  "routes": {
+    "route_1_released_code_completeness": "BLOCKED: no UAVDT code and no MoCap preprocessing/evaluation",
+    "route_2_protocol_consistency": "BLOCKED: all four released MoCap defaults differ from paper",
+    "route_3_exact_data_provenance": "BLOCKED: no raw data, checkpoints, or exact UAVDT sequence manifest",
+    "route_4_falsification": "NO_VALID_FALSIFICATION: absent assets cannot contradict a finite empirical result, and missing-data failure is not falsification"
+  },
+  "schema_version": 1
+}

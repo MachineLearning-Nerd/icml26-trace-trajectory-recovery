@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "purpose": "exact paper-scale 100-epoch learned TRACE retraining and unseen-intermediate-state evaluation on CPU",
+  "seed": 770,
+  "data_seed": 42,
+  "estimated_cores": 4,
+  "loader_workers": 0,
+  "resource_calibration_only": false,
+  "selected_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "paper_scale": {
+    "domains": 5,
+    "samples_per_domain": 40000,
+    "total_samples": 200000,
+    "latent_dimension": 8,
+    "lags": 2,
+    "batch_size": 64,
+    "validation_samples": 2048,
+    "epochs_in_paper": 100,
+    "epochs_to_run": 100,
+    "hidden_dimension": 128,
+    "embedding_dimension": 2,
+    "learning_rate": 0.0005,
+    "beta": 0.002,
+    "gamma": 0.02
+  },
+  "deviations": [
+    "CPU execution instead of the paper's A100 GPU",
+    "the official Dataset casts each item to float32 on every access; this calibration materializes exactly the same float32 tensors once and machine-checks bitwise equality at fixed indices",
+    "the released transition prior materializes a full batch-by-batch Jacobian and extracts its diagonal; this run computes the identical diagonal as grad(output.sum(), input) and checks forward values, parameter gradients, one Adam update, no-grad validation, and the paper batch size 64 against the released path",
+    "num_workers is zero to avoid interprocess copies of an already memory-resident dataset"
+  ]
+}

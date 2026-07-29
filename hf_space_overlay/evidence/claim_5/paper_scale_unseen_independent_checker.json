@@ -1,0 +1,106 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "aggregate_mean_recomputed": true,
+    "every_stored_correlation_recomputed": true,
+    "paper_scale_contract_passed": true
+  },
+  "expected_exit_code": 0,
+  "mean_correlation": 0.9735660404230428,
+  "method": "independent numpy recomputation from raw displayed trajectories",
+  "negative_control": false,
+  "rows": [
+    {
+      "correlation": 0.9856190689708333,
+      "seed": 42,
+      "stored_correlation": 0.9856190689708333,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.982316358476803,
+      "seed": 142,
+      "stored_correlation": 0.982316358476803,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.9878950395887501,
+      "seed": 242,
+      "stored_correlation": 0.9878950395887501,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.9842473344945794,
+      "seed": 342,
+      "stored_correlation": 0.9842473344945794,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.9929879742303981,
+      "seed": 442,
+      "stored_correlation": 0.9929879742303981,
+      "trajectory": "simple"
+    },
+    {
+      "correlation": 0.9879060232715936,
+      "seed": 42,
+      "stored_correlation": 0.9879060232715936,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": 0.9780686632595108,
+      "seed": 142,
+      "stored_correlation": 0.9780686632595108,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": 0.9834514989521096,
+      "seed": 242,
+      "stored_correlation": 0.9834514989521096,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": 0.9828439767801043,
+      "seed": 342,
+      "stored_correlation": 0.9828439767801043,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": 0.989092663966367,
+      "seed": 442,
+      "stored_correlation": 0.989092663966367,
+      "trajectory": "medium"
+    },
+    {
+      "correlation": 0.9521626947575513,
+      "seed": 42,
+      "stored_correlation": 0.9521626947575513,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": 0.9609531816869854,
+      "seed": 142,
+      "stored_correlation": 0.9609531816869854,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": 0.9512742929349821,
+      "seed": 242,
+      "stored_correlation": 0.9512742929349821,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": 0.9527185195351039,
+      "seed": 342,
+      "stored_correlation": 0.9527185195351039,
+      "trajectory": "complex"
+    },
+    {
+      "correlation": 0.9319533154399707,
+      "seed": 442,
+      "stored_correlation": 0.9319533154399707,
+      "trajectory": "complex"
+    }
+  ],
+  "schema_version": 1,
+  "simple_mean_correlation": 0.9866131551522728
+}
