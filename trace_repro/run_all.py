@@ -34,28 +34,38 @@ def invoke(label: str, module: str, *, negative: bool) -> dict:
     if negative:
         command.append("--negative-control")
     started = time.perf_counter()
-    completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
+    process = subprocess.Popen(
+        command,
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        bufsize=1,
+    )
+    output_lines = []
+    assert process.stdout is not None
+    print(f"\n===== {label} =====", flush=True)
+    print("command:", " ".join(command), flush=True)
+    for line in process.stdout:
+        print(line, end="", flush=True)
+        output_lines.append(line)
+    return_code = process.wait()
     runtime = time.perf_counter() - started
     expected_exit = 1 if negative else 0
     record = {
         "label": label,
         "command": command,
-        "exit_code": completed.returncode,
+        "exit_code": return_code,
         "expected_exit_code": expected_exit,
         "runtime_seconds": runtime,
-        "stdout": completed.stdout,
-        "stderr": completed.stderr,
-        "behaved_as_expected": completed.returncode == expected_exit,
+        "stdout": "".join(output_lines),
+        "stderr": "",
+        "behaved_as_expected": return_code == expected_exit,
     }
-    print(f"\n===== {label} =====")
-    print("command:", " ".join(command))
-    print(completed.stdout, end="")
-    if completed.stderr:
-        print("stderr:", completed.stderr, end="")
     print(
         json.dumps(
             {
-                "exit_code": completed.returncode,
+                "exit_code": return_code,
                 "expected_exit_code": expected_exit,
                 "runtime_seconds": runtime,
                 "behaved_as_expected": record["behaved_as_expected"],
@@ -81,12 +91,26 @@ def main() -> int:
             negative=True,
         ),
     ]
-    if "claim_3_official_cpu_calibration" in CONFIG["enabled_checks"]:
+    if "claim_3_paper_scale_learned" in CONFIG["enabled_checks"]:
         records.append(
             invoke(
-                "claim3_official_cpu_calibration",
+                "claim3_paper_scale_learned_primary",
                 "trace_repro.claim3_official_cpu",
                 negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim3_learned_independent",
+                "trace_repro.claim3_learned_checker",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim3_learned_negative_control",
+                "trace_repro.claim3_learned_checker",
+                negative=True,
             )
         )
     total_runtime = time.perf_counter() - campaign_started

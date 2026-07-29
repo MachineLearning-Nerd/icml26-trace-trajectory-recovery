@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "paper_id": "2601.21135v2",
+  "claim": "Training on pure mechanism vertices permits recovery on intermediate convex-combination mechanism states not seen during training.",
+  "paper_result": {
+    "training_states": "five pure vertices",
+    "unseen_path": "mechanism 0 to 2 to 4",
+    "stage1_ood_correlation": 0.313,
+    "full_method_ood_correlation": 0.945
+  },
+  "verification_rule": "The exact full estimator is trained only on pure vertices; all non-vertex evaluation rows are explicitly counted, and five-seed mean correlation on the 0-to-2-to-4 path must be within 0.05 of 0.945.",
+  "negative_control": "Time permutation must reduce mean correlation below 0.50 and exit 1.",
+  "final_verdict_pre_run": "BLOCKED"
+}

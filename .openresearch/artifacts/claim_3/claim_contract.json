@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "paper_id": "2601.21135v2",
+  "claim": "On synthetic three-mechanism transitions, TRACE reports mixing-weight correlation 0.94 +/- 0.05 and up to 0.99 after calibration, above NCTRL-hard 0.67 and NCTRL-soft 0.72.",
+  "paper_configuration": {
+    "latent_dimension": 8,
+    "total_mechanisms": 5,
+    "active_mechanisms": 3,
+    "training_sequences_per_pure_mechanism": 40000,
+    "trajectory_horizon": 50,
+    "trajectory_batch_size": 500,
+    "training_epochs": 100,
+    "smoothing_window": 5
+  },
+  "trace_side_endpoints_preregistered_before_run": {
+    "learned_encoder_mcc": "at least 0.90",
+    "mean_mixing_correlation": "within the reported 0.94 +/- 0.05 interval",
+    "best_mixing_correlation": "at least 0.97, as scoped support for 'up to 0.99'",
+    "unseen_simple_trajectory_correlation": "within 0.05 of 0.945"
+  },
+  "full_claim_verdict_rule": "TRACE-side success alone cannot verify the comparative claim. VERIFIED additionally requires a faithful NCTRL-hard and NCTRL-soft run at the stated scale, with raw outputs and independent checks. A mismatch is not FALSIFIED unless implementation and data parity are established.",
+  "negative_control": "Deterministically permute predicted time indices. Mean correlation must fall below 0.50 and the checker exits 1.",
+  "seeds": {
+    "training": 770,
+    "data": 42,
+    "trajectory_batches": [42, 142, 242, 342, 442],
+    "negative_control": 202601
+  }
+}

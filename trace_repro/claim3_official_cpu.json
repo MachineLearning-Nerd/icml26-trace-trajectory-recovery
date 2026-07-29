@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "purpose": "paper-scale CPU throughput calibration; not claim verification",
+  "purpose": "paper-scale learned-encoder TRACE trajectory and unseen-intermediate-state reproduction",
   "seed": 770,
   "data_seed": 42,
   "estimated_cores": 8,
@@ -15,7 +15,7 @@
     "batch_size": 64,
     "validation_samples": 2048,
     "epochs_in_paper": 100,
-    "epochs_in_calibration": 1,
+    "epochs_to_run": 100,
     "hidden_dimension": 128,
     "embedding_dimension": 2,
     "learning_rate": 0.0005,
@@ -24,6 +24,7 @@
   },
   "deviations": [
     "CPU execution instead of the paper's A100 GPU",
-    "one epoch instead of 100; this node estimates runtime and cannot verify a scientific claim"
+    "the released code does not provide the paper checkpoint, so the released model is retrained deterministically from scratch",
+    "domain means are encoded from only the final observation in each sequence; for the released factorized encoder this is exactly equivalent to encoding every observation and selecting the final latent"
   ]
 }
