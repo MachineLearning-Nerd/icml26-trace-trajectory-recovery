@@ -70,6 +70,19 @@ def main(argv=None):
         raw_targets = [
             target for target in targets if target.endswith((".json", ".csv"))
         ]
+        independent_code_targets = [
+            target
+            for target in code_targets
+            if "independent" in Path(target).name.lower()
+        ]
+        independent_raw_targets = [
+            target
+            for target in raw_targets
+            if (
+                "independent" in Path(target).name.lower()
+                or "independent" in reached.get(target, "").lower()
+            )
+        ]
         checks = {
             "terminal_verdict": bool(
                 re.search(r"\b(Verdict|verdict).*?\b(VERIFIED|FALSIFIED|BLOCKED)\b", page)
@@ -93,6 +106,12 @@ def main(argv=None):
             and all(reached.get(target) for target in raw_targets),
             "checker_or_verifier_explained": bool(
                 re.search(r"(?i)checker|verifier|audit", page)
+            ),
+            "independent_checker_and_output_reached": (
+                bool(independent_code_targets)
+                and bool(independent_raw_targets)
+                and all(reached.get(target) for target in independent_code_targets)
+                and all(reached.get(target) for target in independent_raw_targets)
             ),
             "negative_control_explained": bool(re.search(r"(?i)control", page)),
             "limitations_or_unblocking_scope": bool(

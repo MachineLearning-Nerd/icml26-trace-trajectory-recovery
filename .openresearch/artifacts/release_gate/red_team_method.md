@@ -13,7 +13,8 @@ file opened and checks that the page itself exposes:
 - assumptions or exact empirical protocol;
 - the fixed command;
 - inline numerical evidence and reachable raw data;
-- code, checker, and negative control;
+- primary code, an independently implemented checker and its raw output, and
+  a negative control;
 - limitations or unblocking capability;
 - Git/revision, seed disposition, CPU allocation, and runtime.
 

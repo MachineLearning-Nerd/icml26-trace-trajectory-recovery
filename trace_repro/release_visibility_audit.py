@@ -129,6 +129,30 @@ def audit(*, negative_control=False):
         )
         for claim in range(1, 7)
     }
+    current_pages = [
+        page for page in pages if page.startswith("pages/current/")
+    ]
+    independent_links_complete = {
+        page: bool(
+            any(
+                target.endswith(".py") and "independent" in Path(target).name.lower()
+                for target in referenced.get(page, [])
+            )
+            and any(
+                target.endswith((".json", ".csv"))
+                and (
+                    "independent" in Path(target).name.lower()
+                    or (
+                        (OVERLAY / target).is_file()
+                        and "independent"
+                        in (OVERLAY / target).read_text(errors="replace").lower()
+                    )
+                )
+                for target in referenced.get(page, [])
+            )
+        )
+        for page in current_pages
+    }
 
     missing_pages = sorted(page for page in pages if page not in candidate_paths)
     missing_links = sorted(
@@ -160,6 +184,10 @@ def audit(*, negative_control=False):
         "all_canonical_blob_links_present": not missing_links,
         "all_six_claim_statuses_terminal": all(completed_statuses.values()),
         "all_six_visibility_rows_complete": all(rows_complete.values()),
+        "all_current_pages_link_independent_checker_and_output": (
+            bool(independent_links_complete)
+            and all(independent_links_complete.values())
+        ),
         "overlay_is_text_only": not non_text,
         "secret_scan_clear": not secrets,
         "historical_page_reachable": "pages/overview/page.md" in pages,
@@ -181,6 +209,7 @@ def audit(*, negative_control=False):
         "checks": checks,
         "completed_statuses": completed_statuses,
         "visibility_rows_complete": rows_complete,
+        "independent_links_complete": independent_links_complete,
         "missing_pages": missing_pages,
         "missing_links": missing_links,
         "non_text_paths": non_text,

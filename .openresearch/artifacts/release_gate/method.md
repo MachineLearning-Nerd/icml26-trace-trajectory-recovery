@@ -7,6 +7,7 @@ only logbook pages and explicit Space blob links, and fails closed on:
 
 - a missing protected historical path;
 - a missing canonical page or raw/code link;
+- a current page without a reachable independent checker and output;
 - any non-terminal claim status;
 - an incomplete visibility-matrix row;
 - a non-text overlay file;
