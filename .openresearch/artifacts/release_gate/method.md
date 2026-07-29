@@ -21,3 +21,10 @@ This check is intentionally not enabled while Claim 5 is `RUNNING`. The final
 integration node must enable both primary and negative-control invocations,
 commit the exact upload allowlist and SHA-256 manifest, and rerun the fixed
 campaign command.
+
+`trace_repro.release_upload_check` separately requires that the allowlist is
+exactly the overlay path set, every path is UTF-8 text, and every committed
+SHA-256 matches. Its control corrupts one in-memory digest; that run must fail
+and exit 1. Publication then uses `release_tools/publish_space_text.py`, which
+refuses a different Space, a changed parent revision, an unallowlisted path,
+or a hash mismatch.
