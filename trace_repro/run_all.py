@@ -205,6 +205,31 @@ def main() -> int:
                 negative=False,
             )
         )
+    if "release_visibility_audit" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "release_visibility_primary",
+                    "trace_repro.release_visibility_audit",
+                    negative=False,
+                ),
+                invoke(
+                    "release_visibility_missing_raw_control",
+                    "trace_repro.release_visibility_audit",
+                    negative=True,
+                ),
+                invoke(
+                    "release_upload_manifest_primary",
+                    "trace_repro.release_upload_check",
+                    negative=False,
+                ),
+                invoke(
+                    "release_upload_manifest_hash_control",
+                    "trace_repro.release_upload_check",
+                    negative=True,
+                ),
+            ]
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,
