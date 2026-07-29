@@ -5,6 +5,8 @@ discussion in the **Historical rejected baseline**.
 
 ## Exact protocol and assumptions
 
+### Exact claim
+
 For `d=8`, `K_total=10`, complex trajectories, Appendix E.4 Table 12 reports
 alpha correlation `0.979 +/- 0.003` at `K_active=2` and
 `0.459 +/- 0.052` at `K_active=7`. The corresponding full-W correlations are
