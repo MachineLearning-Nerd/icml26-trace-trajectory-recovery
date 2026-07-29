@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "paper_id": "2601.21135v2",
+  "exact_comparator_claim": "NCTRL-hard reports 0.67 +/- 0.03 and NCTRL-soft reports 0.72 +/- 0.01 on TRACE continuous synthetic trajectories.",
+  "verification_rule": "Requires exact adaptation, training protocol, checkpoints or reproducible training, hard and soft inference definitions, aligned data, raw outputs, and independent recomputation.",
+  "falsification_rule": "Requires an exact-protocol contradictory result; missing code or an invented adaptation is not falsification.",
+  "pre_run_status": "BLOCKED"
+}

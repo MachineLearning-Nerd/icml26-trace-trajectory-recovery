@@ -104,6 +104,21 @@ def main() -> int:
                 negative=True,
             )
         )
+    if "claim_3_nctrl_release_audit" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim3_nctrl_release_audit",
+                "trace_repro.claim3_nctrl_audit",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim3_nctrl_complete_release_control",
+                "trace_repro.claim3_nctrl_audit",
+                negative=True,
+            )
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,
