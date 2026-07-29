@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "claim_id": 6,
+  "paper": "2601.21135v2",
+  "source_anchor": "Section 6.5 and Appendix E.4 Table 12",
+  "paper_statement": "For K_total=10, d=8 and complex trajectories, alpha recovery falls from 0.979+/-0.003 at K_active=2 to 0.459+/-0.052 at K_active=7 while W recovery remains 1.000 and 0.998 respectively; all reported W correlations are at least 0.995.",
+  "audit_contract": {
+    "question": "Can the released global W correlation distinguish correct from deliberately unrelated alpha trajectories?",
+    "paper_scale": "d=8, K_total=10, K_active=2..10, T=50, all three released trajectory families, five deterministic repetitions",
+    "primary_success": "At the headline K_active=7 complex setting, unrelated alpha has |mean component correlation|<0.25 and MAE>0.10, yet released global W correlation>=0.995, while centered-W correlation has magnitude<0.25.",
+    "negative_control": "Substituting the exact true alpha must not trigger the pathology verifier and must exit 1.",
+    "independent_checker": "Reconstruct the released matrices and metric using a separate implementation with manual Pearson correlation."
+  },
+  "claim_verdict_after_this_route": "UNRESOLVED",
+  "reason": "A passing audit invalidates the reported metric as discriminative evidence, but does not by itself contradict the table's numerical values or reproduce the learned encoder."
+}

@@ -81,6 +81,31 @@ def main() -> int:
             negative=True,
         ),
     ]
+    if "claim_6_w_metric_audit" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "claim6_w_metric_primary",
+                    "trace_repro.claim6_w_metric",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_w_metric_truth_control",
+                    "trace_repro.claim6_w_metric",
+                    negative=True,
+                ),
+                invoke(
+                    "claim6_w_metric_independent",
+                    "trace_repro.claim6_independent",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_w_metric_independent_truth_control",
+                    "trace_repro.claim6_independent",
+                    negative=True,
+                ),
+            ]
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,
@@ -109,4 +134,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
