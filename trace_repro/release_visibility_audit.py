@@ -23,6 +23,7 @@ TEXT_SUFFIXES = {
     ".js",
     ".json",
     ".lock",
+    ".log",
     ".md",
     ".py",
     ".svg",
