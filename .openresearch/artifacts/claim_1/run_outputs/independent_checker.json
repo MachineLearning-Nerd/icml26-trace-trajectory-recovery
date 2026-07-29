@@ -1,0 +1,13 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "corrected_control_is_not_contradicted": true,
+    "exact_attribution_is_contradicted": true,
+    "pinned_paper_hash_matches": true,
+    "source_audit_names_latent_only_title": true,
+    "source_audit_says_theorem_4_1_does_not_address_trajectory": true,
+    "trajectory_theorems_are_4_2_and_4_3": true
+  },
+  "method": "independent reconstruction from the pinned source audit and both machine-readable attribution outputs",
+  "schema_version": 1
+}

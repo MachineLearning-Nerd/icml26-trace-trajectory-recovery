@@ -11,6 +11,11 @@ The primary checker inspects the pinned official release manifest and parses
 the released MoCap defaults. A synthetic complete-manifest negative control
 must defeat the incompleteness conclusion and exit 1.
 
+The independent checker does not consume the primary JSON. It separately
+inventories all release paths, reconstructs the manifest hash, and parses the
+four MoCap defaults through Python's abstract syntax tree instead of the
+primary checker's regular expressions.
+
 ### Route 1 — released-code completeness
 
 Interpretation: reproduce the reported endpoints using the authors' released

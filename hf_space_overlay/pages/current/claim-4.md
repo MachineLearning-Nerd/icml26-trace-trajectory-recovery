@@ -62,8 +62,10 @@ eight logical CPUs; cumulative wall time 121.746 seconds. **Seeds:** none; the
 - [Claim contract](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/claim_contract.json)
 - [Source audit](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/source_audit.md)
 - [Verifier](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/claim4_release_audit.py)
+- [Independent checker](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/claim4_release_independent.py)
 - [Raw primary output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/release_audit.json)
 - [Raw complete-release control](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/release_audit_negative_control.json)
+- [Raw independent output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_4/release_independent_checker.json)
 
 ## Unblocking capability
 

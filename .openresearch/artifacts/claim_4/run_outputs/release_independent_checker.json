@@ -1,0 +1,30 @@
+{
+  "all_checks_passed": true,
+  "ast_defaults": {
+    "batch_size": 64,
+    "epochs": 200,
+    "hidden_dim": 128,
+    "lag": 2
+  },
+  "checks": {
+    "all_four_defaults_differ_from_paper": true,
+    "ast_reconstructed_defaults_match_primary": true,
+    "manifest_hash_matches_primary": true,
+    "no_checkpoint": true,
+    "no_mocap_preprocess_or_eval_python_file": true,
+    "no_real_data_archive": true,
+    "no_uavdt_python_file": true,
+    "release_has_46_files": true
+  },
+  "method": "independent filesystem inventory plus Python AST parsing of argparse defaults; does not consume the primary audit JSON",
+  "paper_defaults": {
+    "batch_size": 128,
+    "epochs": 100,
+    "hidden_dim": 256,
+    "lag": 3
+  },
+  "release_file_count": 46,
+  "release_manifest_sha256": "e3f799e8bbe8568804537f3416ac08e3acdee32c68a1f6d0db4375bfc7194e3f",
+  "schema_version": 1,
+  "verdict_supported": "BLOCKED"
+}

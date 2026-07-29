@@ -1,0 +1,24 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "all_independent_download_hashes_match": true,
+    "trace_release_contains_no_nctrl_named_file": true,
+    "upstream_has_no_named_soft_gating_variant": true,
+    "upstream_indexes_embeddings_by_decoded_state": true,
+    "upstream_protocol_is_different_length_four_200_epoch": true,
+    "upstream_uses_viterbi_hard_assignment": true
+  },
+  "method": "fresh three-file download and independent keyword/protocol reconstruction; does not consume the primary audit JSON",
+  "retrieval": {
+    "date": "2026-07-29",
+    "hash_checks": {
+      "configs/simulation/simulation_nctrl.yaml": true,
+      "models/hmm.py": true,
+      "models/simulation.py": true
+    },
+    "upstream_git_sha": "d2540bb5d0ebe7e75f68ebb490a94fe019a65c52",
+    "user_agent": "OpenResearch-TRACE-Independent-Checker/1.0"
+  },
+  "schema_version": 1,
+  "verdict_supported": "BLOCKED"
+}

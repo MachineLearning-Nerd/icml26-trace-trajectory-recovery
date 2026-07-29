@@ -154,6 +154,13 @@ def main() -> int:
                 negative=True,
             )
         )
+        records.append(
+            invoke(
+                "claim4_release_independent",
+                "trace_repro.claim4_release_independent",
+                negative=False,
+            )
+        )
     if "claim_3_nctrl_release_audit" in CONFIG["enabled_checks"]:
         records.append(
             invoke(
@@ -169,6 +176,13 @@ def main() -> int:
                 negative=True,
             )
         )
+        records.append(
+            invoke(
+                "claim3_nctrl_independent",
+                "trace_repro.claim3_nctrl_independent",
+                negative=False,
+            )
+        )
     if "claim_1_attribution" in CONFIG["enabled_checks"]:
         records.append(
             invoke(
@@ -182,6 +196,13 @@ def main() -> int:
                 "claim1_corrected_attribution_control",
                 "trace_repro.claim1_attribution",
                 negative=True,
+            )
+        )
+        records.append(
+            invoke(
+                "claim1_attribution_independent",
+                "trace_repro.claim1_independent",
+                negative=False,
             )
         )
     total_runtime = time.perf_counter() - campaign_started

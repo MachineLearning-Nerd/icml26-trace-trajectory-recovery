@@ -54,8 +54,10 @@ corrected attribution is contradicted.
 - [Claim contract](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/claim_contract.json)
 - [Source audit](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/source_audit.md)
 - [Verifier](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/claim1_attribution.py)
+- [Independent checker](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/claim1_independent.py)
 - [Raw exact output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/exact_attribution.json)
 - [Raw control output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/corrected_attribution_control.json)
+- [Raw independent output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_1/independent_checker.json)
 - [Pinned environment](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/environment/pyproject.toml)
 
 ## Limitation

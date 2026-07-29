@@ -64,8 +64,10 @@ blocker.
 - [Claim contract](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/claim_contract.json)
 - [NCTRL source audit](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/nctrl_source_audit.md)
 - [Audit verifier](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/claim3_nctrl_audit.py)
+- [Independent checker](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/claim3_nctrl_independent.py)
 - [Raw primary output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/nctrl_release_audit.json)
 - [Raw complete-release control](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/nctrl_complete_release_control.json)
+- [Raw independent output](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_3/nctrl_independent_checker.json)
 
 ## Limitation
 
