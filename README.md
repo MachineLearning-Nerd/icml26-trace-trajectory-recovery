@@ -15,12 +15,14 @@ We also produced an assumption-audited counterexample to the displayed
 Theorem 4.3 bound: at `T=64`, `sigma=0.5`, and a constant path, its displayed
 right-hand side is `0` while exact expected MSE is `0.0340467`.
 
-This is not a new judge result. The live score remains **4/12** at Hugging Face
-revision `8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. Current reproduction
-assessments are: Claims 1 and 2 FALSIFIED in their exact judged wording;
-Claims 3, 4, and 6 BLOCKED by missing released capabilities after their
-required routes; Claim 5 VERIFIED on the specified synthetic interpolation
-protocol. Conservative projected score range is `6–8/12`, with
+This is not a new judge result. The live score remains **4/12** and the Judge
+Head remains `8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. The evidence is
+published at Hugging Face revision
+`c3fcc96479365998dc02d1a7103b44f25e728a24` and is awaiting evaluation.
+Current reproduction assessments are: Claims 1 and 2 FALSIFIED in their exact
+judged wording; Claims 3, 4, and 6 BLOCKED by missing released capabilities
+after their required routes; Claim 5 VERIFIED on the specified synthetic
+interpolation protocol. Conservative projected score range is `6–8/12`, with
 best-supported possible score `8/12`; these are forecasts only.
 
 - [Illustrated technical report](reports/trace_claim_reproduction/report.md)
@@ -62,7 +64,8 @@ used.
 | [`orx/exact-100-epoch-learned-trace-via-equivalent-jac`](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/exact-100-epoch-learned-trace-via-equivalent-jac) | exact paper-scale learned TRACE and unseen-state evaluation | `uv run --frozen python -m trace_repro.run_all` | TRACE-side contract passed; Claim 5 VERIFIED, Claim 3 comparator BLOCKED | HF `cpu-upgrade`, 4 Torch threads, 3.086 h |
 | [`orx/claim-6-four-route-final-assessment`](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/claim-6-four-route-final-assessment) | metric controls and four-route Claim 6 verdict | `uv run --frozen python -m trace_repro.run_all` | BLOCKED; metric pathology independently verified | local CPU, 65 s job |
 | [`orx/frozen-cumulative-candidate-regression`](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/frozen-cumulative-candidate-regression) | cumulative Claims 1/2/3/4/6 regression and Space mirror | `uv run --frozen python -m trace_repro.run_all` | all expected primary/control exits pass | local CPU, 84.7 s suite |
-| `main` | publication surface | Not run as an experiment (publication surface) | presentation-only until release gates pass | none |
+| [`orx/evaluator-visible-release-candidate-with-learned`](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/evaluator-visible-release-candidate-with-learned) | final learned rerun plus all cumulative scientific and release gates | `uv run --frozen python -m trace_repro.run_all` | terminal `done`; all primaries, independent checks, and intended failing controls behaved as expected | HF `cpu-upgrade`, 4 Torch threads, 2h45m |
+| `main` | publication surface | Not run as an experiment (publication surface) | published landing page after release gates passed | none |
 
 ## Upstream baseline context
 

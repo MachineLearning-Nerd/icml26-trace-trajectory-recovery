@@ -4,8 +4,8 @@
 
 # TRACE reproduction release report
 
-The current total remains `4/12` until the live evaluator judges a newly
-published Hugging Face revision. The candidate does not promise 12/12: it
+The current total remains `4/12` until the live evaluator judges the newly
+published Hugging Face revision. The release does not promise 12/12: it
 strengthens three claims to exact or direct evidence and leaves three compound
 claims honestly BLOCKED where public capabilities are insufficient.
 
@@ -47,8 +47,8 @@ no GPU.
 | full fixed-command runtime | 11,110.509 s (3.086 h) |
 | listed CPU Upgrade price | $0.03 / hour |
 | estimated cost for terminal learned run | $0.0926 |
-| pre-final cumulative HF runtime, including canceled feasibility routes | about 10.25 h |
-| pre-final cumulative estimated HF cost | about $0.308 |
+| cumulative HF runtime, including canceled feasibility routes and final release rerun | about 12.99 h |
+| cumulative estimated HF cost | about $0.390 |
 | short local ORX runs | all at most 2m11s, one core |
 
 ## Experiment-tree summary
@@ -108,10 +108,14 @@ assumption-satisfying counterexample.
 
 ## Exact publication action
 
-After the final cumulative HF regression, protected-file subset proof,
-text-only secret scan, complete visibility matrix, and repeated blind review
-all pass, the approved allowlist will be uploaded atomically to the existing
-Space `DineshAI/xRN1Ym2hoa` with parent commit
-`8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. No second Space will be created.
-The exact published revision will then be downloaded, hash-verified, and
-traversed again before the paper is reported as awaiting judge.
+The approved 87-path text-only allowlist was uploaded atomically to the
+existing Space `DineshAI/xRN1Ym2hoa` with parent commit
+`8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. No second Space was created.
+The exact published revision is
+`c3fcc96479365998dc02d1a7103b44f25e728a24`.
+
+A fresh download of that revision passed all 87 hash checks, retained all
+13 historical judged paths among 97 published paths, passed canonical
+evaluator-blind traversal with no missing conclusion, and matched every
+displayed Claim 5 number to raw JSON. The paper is awaiting live evaluation;
+the score remains `4/12` until the judge records a new verdict.
