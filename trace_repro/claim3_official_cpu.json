@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "purpose": "one-epoch compute-only calibration of a bitwise-equivalent tensorized loader at 8 Torch threads",
+  "purpose": "one-epoch compute-only calibration of a bitwise-equivalent tensorized loader at 1 Torch thread",
   "seed": 770,
   "data_seed": 42,
-  "estimated_cores": 8,
+  "estimated_cores": 1,
   "loader_workers": 0,
   "resource_calibration_only": true,
   "selected_backend": "hf",
