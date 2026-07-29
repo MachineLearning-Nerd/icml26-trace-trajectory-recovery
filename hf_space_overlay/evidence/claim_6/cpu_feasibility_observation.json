@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_id": "585e03a9-9997-4c5b-8756-3ab9f1925778",
+  "run_id": "af0097c2-6711-4260-bd6f-029c991850fd",
+  "git_sha": "2a7f45de578fdde38bde16cde365d66f73f8f8e1",
+  "status": "cancelled_after_calibration",
+  "fixed_command": "uv run --frozen python -m trace_repro.run_all",
+  "selected_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "estimated_useful_cpu_threads": 32,
+  "actual_visible_cpus": 64,
+  "configured_torch_threads": 32,
+  "paper_scale_examples": 400000,
+  "batches_per_epoch": 6218,
+  "observed_batches": 134,
+  "stable_seconds_per_batch_range": [
+    1.74,
+    1.77
+  ],
+  "projected_epoch_hours": 2.95,
+  "projected_100_epoch_hours": 295.0,
+  "job_runtime_seconds": 291,
+  "checkpoint_present": false,
+  "provenance": "Values transcribed from immutable orx run logs; projection is a resource decision, not scientific evidence."
+}

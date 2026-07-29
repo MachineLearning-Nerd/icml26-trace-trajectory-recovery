@@ -8,10 +8,15 @@ revision; no score increase is claimed here.
 
 | Claim | Status | Canonical page |
 | --- | --- | --- |
+| 1 — exact Theorem 4.1 attribution | FALSIFIED | [Source-level theorem audit](#/current-claim-1) |
 | 2 — Theorems 4.2/4.3 | FALSIFIED | [Exact Theorem 4.3 counterexample](#/current-claim-2) |
+| 3 — learned TRACE vs NCTRL | BLOCKED | [Learned run and comparator audit](#/current-claim-3) |
+| 4 — UAVDT and CMU MoCap | BLOCKED | [Real-data release audit](#/current-claim-4) |
+| 5 — unseen intermediate states | RUNNING | Canonical page pending terminal learned run |
+| 6 — geometric bottleneck | BLOCKED | [Metric audit and four routes](#/current-claim-6) |
 
-Claims 1 and 3–6 remain under active audit and are not release-ready in this
-intermediate candidate.
+This remains an unpublished intermediate candidate. Claim 5 and the TRACE side
+of Claim 3 are awaiting the terminal learned run; no forecast is made yet.
 
 ## Historical evidence
 
@@ -23,5 +28,9 @@ intermediate candidate.
 
 | Claim | Canonical page | Code visible | Data inline | Raw link | Checker | Control | Exact claim tested | Reviewer verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | current-claim-1 | yes | yes | yes | yes | yes | yes | FALSIFIED |
 | 2 | current-claim-2 | yes | yes | yes | yes | yes | yes | FALSIFIED |
-
+| 3 | current-claim-3 | yes | yes | yes | comparator yes; learned pending | yes | yes | BLOCKED |
+| 4 | current-claim-4 | yes | yes | yes | yes | yes | yes | BLOCKED |
+| 5 | pending | no | no | no | no | no | no | RUNNING |
+| 6 | current-claim-6 | yes | yes | yes | yes | yes | yes | BLOCKED |

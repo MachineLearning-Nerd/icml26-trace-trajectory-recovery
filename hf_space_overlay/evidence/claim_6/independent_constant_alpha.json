@@ -1,0 +1,64 @@
+{
+  "control": "constant mean alpha",
+  "implementation": "independent manual Pearson and flattened delta basis",
+  "k_active": 7,
+  "means": {
+    "alpha_mae": 0.09329404898591229,
+    "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+    "centered_w_corr_global": 0.7900373818429816,
+    "official_w_corr_global": 0.9987418335229613,
+    "w_temporal_variation_ratio": 1.0214476130298977e-15
+  },
+  "pathology_detected": true,
+  "records": [
+    {
+      "alpha_mae": 0.09329404898591229,
+      "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+      "centered_w_corr_global": 0.7900373818429816,
+      "official_w_corr_global": 0.9987418335229613,
+      "seed": 20260729,
+      "w_temporal_variation_ratio": 1.0214476130298977e-15
+    },
+    {
+      "alpha_mae": 0.09329404898591229,
+      "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+      "centered_w_corr_global": 0.7900373818429816,
+      "official_w_corr_global": 0.9987418335229613,
+      "seed": 20260730,
+      "w_temporal_variation_ratio": 1.0214476130298977e-15
+    },
+    {
+      "alpha_mae": 0.09329404898591229,
+      "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+      "centered_w_corr_global": 0.7900373818429816,
+      "official_w_corr_global": 0.9987418335229613,
+      "seed": 20260731,
+      "w_temporal_variation_ratio": 1.0214476130298977e-15
+    },
+    {
+      "alpha_mae": 0.09329404898591229,
+      "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+      "centered_w_corr_global": 0.7900373818429816,
+      "official_w_corr_global": 0.9987418335229613,
+      "seed": 20260732,
+      "w_temporal_variation_ratio": 1.0214476130298977e-15
+    },
+    {
+      "alpha_mae": 0.09329404898591229,
+      "alpha_temporal_variation_ratio": 1.0214476130298977e-15,
+      "centered_w_corr_global": 0.7900373818429816,
+      "official_w_corr_global": 0.9987418335229613,
+      "seed": 20260733,
+      "w_temporal_variation_ratio": 1.0214476130298977e-15
+    }
+  ],
+  "schema_version": 1,
+  "seeds": [
+    20260729,
+    20260730,
+    20260731,
+    20260732,
+    20260733
+  ],
+  "trajectory": "complex"
+}

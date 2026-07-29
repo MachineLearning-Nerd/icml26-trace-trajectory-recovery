@@ -1,0 +1,100 @@
+{
+  "allocation": {
+    "estimated_cores": 1,
+    "os_cpu_count": 8,
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "process_affinity_cpus": null,
+    "selected_backend": "local",
+    "selected_flavor": "none"
+  },
+  "control": "truth",
+  "delta_edges": [
+    [
+      4,
+      3
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      0,
+      6
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      7,
+      0
+    ]
+  ],
+  "interpretation": "The released global W correlation mixes invariant spatial structure with temporal recovery. A constant prediction with exactly zero temporal W variation can therefore meet the paper's 0.995 threshold.",
+  "k7_complex_means": {
+    "alpha_mae": 0.0,
+    "alpha_temporal_variation_ratio": 1.0,
+    "centered_w_corr_global": 1.0,
+    "official_w_corr_global": 1.0,
+    "w_relative_innovation_error": 0.0,
+    "w_temporal_variation_ratio": 1.0
+  },
+  "matrix_condition_threshold": 106.52559049540992,
+  "matrix_generation_seed": 42,
+  "official_code_anchor": "inference/ablation_W_recovery.py::compute_W_metrics",
+  "official_trace_source_sha": "f71d7ed89f721cfe4a134cf04be0e6a05795e4b6",
+  "paper": "2601.21135v2",
+  "paper_scale": {
+    "d": 8,
+    "k_active": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "k_total": 10,
+    "repetitions": 5,
+    "timesteps": 50,
+    "trajectory_types": [
+      "simple",
+      "medium",
+      "complex"
+    ]
+  },
+  "pathology_detected": false,
+  "schema_version": 1,
+  "scientific_scope": "This invalidates the metric as evidence of W(t) recovery. It does not reproduce the authors' learned encoder or their exact predicted alphas.",
+  "seeds": [
+    20260729,
+    20260730,
+    20260731,
+    20260732,
+    20260733
+  ],
+  "source_anchor": "Section 6.5; Appendix E.4 Table 12"
+}

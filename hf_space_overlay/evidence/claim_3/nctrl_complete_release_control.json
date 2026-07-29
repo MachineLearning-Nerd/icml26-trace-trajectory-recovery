@@ -1,0 +1,58 @@
+{
+  "claim_3_comparator_status": "BLOCKED",
+  "counterexample_established": false,
+  "facts": {
+    "all_upstream_hashes_match": true,
+    "trace_release_has_nctrl_training_or_eval": true,
+    "upstream_conditions_experts_on_hard_indices": true,
+    "upstream_decodes_viterbi_hard_states": true,
+    "upstream_exposes_soft_gating_variant": true,
+    "upstream_training_dataset": "z8_c5_lags2_len4_Nlayer3",
+    "upstream_training_epochs": 200
+  },
+  "missing_exact_protocol_established": false,
+  "retrieval": {
+    "date": "2026-07-29",
+    "files": {
+      "README.md": {
+        "bytes": 1179,
+        "expected_sha256": "62b8809267cdfb82f0076a53ff5583461f877db4950d3bd0149f803948a4a5ba",
+        "hash_matches": true,
+        "observed_sha256": "62b8809267cdfb82f0076a53ff5583461f877db4950d3bd0149f803948a4a5ba"
+      },
+      "configs/simulation/simulation_nctrl.yaml": {
+        "bytes": 597,
+        "expected_sha256": "0103d9a5e4f8eae2f4c8652d3177586068712487817db486cc115d641958bc4d",
+        "hash_matches": true,
+        "observed_sha256": "0103d9a5e4f8eae2f4c8652d3177586068712487817db486cc115d641958bc4d"
+      },
+      "models/hmm.py": {
+        "bytes": 21748,
+        "expected_sha256": "e73bb380a046eb27585d8f604c6df6c2f4ef2ae70e500226fd0d5442723ac0ff",
+        "hash_matches": true,
+        "observed_sha256": "e73bb380a046eb27585d8f604c6df6c2f4ef2ae70e500226fd0d5442723ac0ff"
+      },
+      "models/simulation.py": {
+        "bytes": 26973,
+        "expected_sha256": "282cf1ce751388bc497585d5b697fd51395969e30328e7d99129a3e9a0c542e4",
+        "hash_matches": true,
+        "observed_sha256": "282cf1ce751388bc497585d5b697fd51395969e30328e7d99129a3e9a0c542e4"
+      },
+      "train_simulation.py": {
+        "bytes": 2987,
+        "expected_sha256": "ff1e976dd11b870187445f7c67a4728dbc28aeb5b40f08152b4ef63a4820a5c6",
+        "hash_matches": true,
+        "observed_sha256": "ff1e976dd11b870187445f7c67a4728dbc28aeb5b40f08152b4ef63a4820a5c6"
+      }
+    },
+    "upstream_nctrl_git_sha": "d2540bb5d0ebe7e75f68ebb490a94fe019a65c52",
+    "user_agent": "OpenResearch-TRACE-Reproduction/1.0"
+  },
+  "routes": {
+    "route_1_trace_release": "BLOCKED: no NCTRL adaptation, comparator command, checkpoint, or output",
+    "route_2_upstream_hard": "BLOCKED: upstream NCTRL is a different length-4 discrete ARHMM experiment and exposes Viterbi hard routing only",
+    "route_3_soft_protocol": "BLOCKED: TRACE's soft-gating modification has no implementation, objective, temperature, checkpoint, or evaluation protocol",
+    "route_4_falsification": "NO_VALID_FALSIFICATION: absent comparator assets cannot contradict the finite reported 0.67/0.72 results"
+  },
+  "schema_version": 1
+}

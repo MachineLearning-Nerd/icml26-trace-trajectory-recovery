@@ -1,0 +1,23 @@
+{
+  "attributed_theorems": [
+    "Theorem 4.1",
+    "Theorem 4.2",
+    "Theorem 4.3"
+  ],
+  "contradiction": false,
+  "control": "corrected Theorems 4.1-4.3 attribution",
+  "exact_claim_tested": "Theorem 4.1 establishes joint identifiability of latent variables and the continuous mixing trajectory",
+  "schema_version": 1,
+  "scope": "This falsifies the exact theorem attribution. It does not falsify Theorem 4.1's latent-only conclusion and does not claim a finite experiment proves the universal latent theorem.",
+  "source_facts": {
+    "paper_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
+    "section_4_2_transition": "Theorem 4.1 does not address inference of the mixing trajectory",
+    "theorem_4_1_conclusion": "learned latents equal component-wise strictly monotonic transforms of a permutation of true latents",
+    "theorem_4_1_title": "Identifiability of Latent Variables",
+    "trajectory_results": [
+      "Theorem 4.2",
+      "Theorem 4.3"
+    ]
+  },
+  "verdict": "NOT_FALSIFIED"
+}
