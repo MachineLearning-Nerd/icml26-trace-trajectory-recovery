@@ -8,6 +8,6 @@
   "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
   "selected_compute_backend": "hf",
   "selected_compute_flavor": "cpu-upgrade",
-  "estimated_cores": 8,
-  "runtime_estimate": "one exact paper-scale calibration epoch with a bitwise-equivalent tensorized loader: under 30 minutes on 8 CPU threads"
+  "estimated_cores": 4,
+  "runtime_estimate": "one exact paper-scale calibration epoch with a bitwise-equivalent tensorized loader: under 30 minutes on 4 CPU threads"
 }
