@@ -1,0 +1,57 @@
+{
+  "paper": "2601.21135v2",
+  "claim_id": 2,
+  "verdict": "FALSIFIED",
+  "run_id": "0f6a8434-f54e-4397-a488-d68097e23024",
+  "git_sha": "0acdcbd0141da4cf13c772a5ca492dae8dedd75f",
+  "fixed_command": "uv run --frozen python -m trace_repro.run_all",
+  "compute": {
+    "estimated_cores": 1,
+    "backend": "hf",
+    "flavor": "cpu-upgrade",
+    "os_cpu_count": 64,
+    "process_affinity_cpus": 64,
+    "job_runtime_seconds": 37,
+    "scientific_runtime_seconds": 1.7878676468972117
+  },
+  "primary": {
+    "T": 64,
+    "V": 0,
+    "sigma": 0.5,
+    "sigma_min": 1,
+    "delta_approx": 0,
+    "lambda": 3.9999999999999996,
+    "exact_expected_mse": 0.03404667009563923,
+    "constant_mode_lower_bound": 0.00390625,
+    "displayed_bound_rhs": 0,
+    "contradiction": true,
+    "exit_code": 0
+  },
+  "independent_checker": {
+    "seed": 20260729,
+    "repetitions": 20000,
+    "expected_constant_mode_mse": 0.00390625,
+    "empirical_constant_mode_mse": 0.003966053385246882,
+    "monte_carlo_standard_error": 0.000040479978351390024,
+    "lower_five_standard_errors": 0.0037636534934899317,
+    "contradiction": true,
+    "exit_code": 0
+  },
+  "negative_controls": [
+    {
+      "checker": "exact",
+      "change": "sigma=0",
+      "verdict": "NOT_FALSIFIED",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "checker": "independent",
+      "change": "sigma=0",
+      "verdict": "NOT_FALSIFIED",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    }
+  ]
+}
+

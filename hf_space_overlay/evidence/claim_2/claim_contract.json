@@ -1,0 +1,10 @@
+{
+  "claim_id": 2,
+  "source_anchor": "Theorem 4.3 and Equation (7), arXiv:2601.21135v2",
+  "verdict": "FALSIFIED",
+  "quantifier_target": "TV(alpha*) <= V includes V=0 constant paths",
+  "acceptance_rule": "All assumptions hold, displayed RHS is zero, exact estimator risk is positive, and zero-noise controls do not trigger.",
+  "run_id": "0f6a8434-f54e-4397-a488-d68097e23024",
+  "git_sha": "0acdcbd0141da4cf13c772a5ca492dae8dedd75f"
+}
+

@@ -1,0 +1,281 @@
+Cloning into 'repo'...
+Downloading cpython-3.8.20-linux-x86_64-gnu (download) (19.9MiB)
+ Downloaded cpython-3.8.20-linux-x86_64-gnu (download)
+Using CPython 3.8.20
+Creating virtual environment at: .venv
+   Building trace-claim-reproduction @ file:///repo
+Downloading pygments (1.2MiB)
+Downloading setuptools (1.2MiB)
+Downloading kiwisolver (1.1MiB)
+Downloading scikit-learn (10.6MiB)
+Downloading jedi (1.5MiB)
+Downloading aiohttp (1.2MiB)
+Downloading tensorboard-data-server (6.3MiB)
+Downloading cryptography (4.5MiB)
+Downloading opencv-python-headless (47.5MiB)
+Downloading networkx (2.0MiB)
+Downloading pillow (4.3MiB)
+Downloading tensorboard (5.3MiB)
+Downloading numpy (16.5MiB)
+Downloading matplotlib (8.8MiB)
+Downloading scipy (32.9MiB)
+Downloading grpcio (5.7MiB)
+Downloading sympy (5.9MiB)
+Downloading fonttools (4.5MiB)
+Downloading h5py (5.1MiB)
+Downloading torchvision (23.7MiB)
+Downloading torch (186.4MiB)
+Downloading pymunk (1.0MiB)
+ Downloaded kiwisolver
+ Downloaded aiohttp
+ Downloaded pymunk
+ Downloaded pygments
+ Downloaded torchvision
+      Built trace-claim-reproduction @ file:///repo
+ Downloaded setuptools
+ Downloaded pillow
+ Downloaded fonttools
+ Downloaded h5py
+ Downloaded grpcio
+ Downloaded cryptography
+ Downloaded networkx
+ Downloaded tensorboard-data-server
+ Downloaded tensorboard
+ Downloaded matplotlib
+ Downloaded scikit-learn
+ Downloaded sympy
+ Downloaded opencv-python-headless
+ Downloaded scipy
+ Downloaded numpy
+ Downloaded jedi
+ Downloaded torch
+Installed 88 packages in 5.72s
+TRACE CLAIM CAMPAIGN
+{
+  "allocation": {
+    "estimated_cores": 1,
+    "os_cpu_count": 64,
+    "platform": "Linux-6.12.90-120.164.amzn2023.x86_64-x86_64-with-glibc2.2.5",
+    "process_affinity_cpus": 64,
+    "python": "3.8.20",
+    "selected_backend": "hf",
+    "selected_flavor": "cpu-upgrade"
+  },
+  "config": {
+    "enabled_checks": [
+      "claim_2_theorem_4_3"
+    ],
+    "estimated_cores": 1,
+    "paper_id": "2601.21135v2",
+    "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
+    "runtime_estimate": "scientific verifier <1 minute; locked-environment bootstrap uncertain",
+    "schema_version": 1,
+    "selected_compute_backend": "hf",
+    "selected_compute_flavor": "cpu-upgrade"
+  }
+}
+
+===== claim2_exact_primary =====
+command: /repo/.venv/bin/python -m trace_repro.claim2_theorem43
+{
+  "assumption_audit": {
+    "A10_smooth_trajectory": "constant alpha, TV=0",
+    "A11_sub_gaussian_noise": "Gaussian noise is sub-Gaussian",
+    "A1_invertible_mixing": "g(z)=z",
+    "A2_conditional_independence": "vacuous for d=1",
+    "A3_prime_row_non_degeneracy": "the sole 1D row difference is nonzero",
+    "A3_sufficient_variability": "delta W^(1)=1 is nonzero",
+    "A4_basis_full_rank": true,
+    "A5_twice_differentiable": "linear f and identity h",
+    "A6_bounded_total_variation": true,
+    "simplex_constraint": "alpha=(0.5, 0.5)"
+  },
+  "claim": "TRACE Theorem 4.3, Equation (7)",
+  "constant_mode_lower_bound": 0.00390625,
+  "contradiction": true,
+  "control": "primary",
+  "counterexample": {
+    "K": 2,
+    "alpha_1_t": 0.5,
+    "basis_B": [
+      [
+        1.0
+      ]
+    ],
+    "d": 1,
+    "delta_approx": 0.0,
+    "horizon_T": 64,
+    "lambda": 3.9999999999999996,
+    "noise": "iid Gaussian, mean 0",
+    "noise_sigma": 0.5,
+    "sigma_min": 1.0,
+    "total_variation_V": 0.0
+  },
+  "displayed_bound_rhs": 0.0,
+  "exact_expected_mse": 0.03404667009563923,
+  "reason": "The constant eigenvector of D^T D has eigenvalue zero, so the smoother preserves its Gaussian noise component. Risk is at least sigma^2/T > 0, while Equation (7) evaluates to zero at V=delta=0.",
+  "verdict": "FALSIFIED"
+}
+{"behaved_as_expected": true, "exit_code": 0, "expected_exit_code": 0, "runtime_seconds": 0.07317378791049123}
+
+===== claim2_exact_negative_control =====
+command: /repo/.venv/bin/python -m trace_repro.claim2_theorem43 --negative-control
+{
+  "assumption_audit": {
+    "A10_smooth_trajectory": "constant alpha, TV=0",
+    "A11_sub_gaussian_noise": "Gaussian noise is sub-Gaussian",
+    "A1_invertible_mixing": "g(z)=z",
+    "A2_conditional_independence": "vacuous for d=1",
+    "A3_prime_row_non_degeneracy": "the sole 1D row difference is nonzero",
+    "A3_sufficient_variability": "delta W^(1)=1 is nonzero",
+    "A4_basis_full_rank": true,
+    "A5_twice_differentiable": "linear f and identity h",
+    "A6_bounded_total_variation": true,
+    "simplex_constraint": "alpha=(0.5, 0.5)"
+  },
+  "claim": "TRACE Theorem 4.3, Equation (7)",
+  "constant_mode_lower_bound": 0.0,
+  "contradiction": false,
+  "control": "zero-noise negative control",
+  "counterexample": {
+    "K": 2,
+    "alpha_1_t": 0.5,
+    "basis_B": [
+      [
+        1.0
+      ]
+    ],
+    "d": 1,
+    "delta_approx": 0.0,
+    "horizon_T": 64,
+    "lambda": 3.9999999999999996,
+    "noise": "iid Gaussian, mean 0",
+    "noise_sigma": 0.0,
+    "sigma_min": 1.0,
+    "total_variation_V": 0.0
+  },
+  "displayed_bound_rhs": 0.0,
+  "exact_expected_mse": 0.0,
+  "reason": "The constant eigenvector of D^T D has eigenvalue zero, so the smoother preserves its Gaussian noise component. Risk is at least sigma^2/T > 0, while Equation (7) evaluates to zero at V=delta=0.",
+  "verdict": "NOT_FALSIFIED"
+}
+{"behaved_as_expected": true, "exit_code": 1, "expected_exit_code": 1, "runtime_seconds": 0.05148527701385319}
+
+===== claim2_independent_primary =====
+command: /repo/.venv/bin/python -m trace_repro.claim2_independent
+{
+  "contradiction": true,
+  "control": "primary",
+  "displayed_bound_rhs": 0.0,
+  "empirical_constant_mode_mse": 0.003966053385246882,
+  "expected_constant_mode_mse": 0.00390625,
+  "horizon_T": 64,
+  "implementation": "independent seeded Gaussian simulation",
+  "lower_five_standard_errors": 0.0037636534934899317,
+  "monte_carlo_standard_error": 4.0479978351390024e-05,
+  "noise_sigma": 0.5,
+  "repetitions": 20000,
+  "seed": 20260729,
+  "verdict": "FALSIFIED"
+}
+{"behaved_as_expected": true, "exit_code": 0, "expected_exit_code": 0, "runtime_seconds": 0.8799333970528096}
+
+===== claim2_independent_negative_control =====
+command: /repo/.venv/bin/python -m trace_repro.claim2_independent --negative-control
+{
+  "contradiction": false,
+  "control": "zero-noise negative control",
+  "displayed_bound_rhs": 0.0,
+  "empirical_constant_mode_mse": 0.0,
+  "expected_constant_mode_mse": 0.0,
+  "horizon_T": 64,
+  "implementation": "independent seeded Gaussian simulation",
+  "lower_five_standard_errors": 0.0,
+  "monte_carlo_standard_error": 0.0,
+  "noise_sigma": 0.0,
+  "repetitions": 20000,
+  "seed": 20260729,
+  "verdict": "NOT_FALSIFIED"
+}
+{"behaved_as_expected": true, "exit_code": 1, "expected_exit_code": 1, "runtime_seconds": 0.7773208059370518}
+
+===== EVAL.md summary =====
+{
+  "all_expected": true,
+  "allocation": {
+    "estimated_cores": 1,
+    "os_cpu_count": 64,
+    "platform": "Linux-6.12.90-120.164.amzn2023.x86_64-x86_64-with-glibc2.2.5",
+    "process_affinity_cpus": 64,
+    "python": "3.8.20",
+    "selected_backend": "hf",
+    "selected_flavor": "cpu-upgrade"
+  },
+  "claim_2_verdict": "FALSIFIED",
+  "git_sha": "0acdcbd0141da4cf13c772a5ca492dae8dedd75f",
+  "limitations": "This falsifies the exact displayed Theorem 4.3 bound. It does not claim that a corrected bound with a parametric noise-floor term, or a different total-variation estimator, is false.",
+  "paper": "2601.21135v2",
+  "records": [
+    {
+      "behaved_as_expected": true,
+      "command": [
+        "/repo/.venv/bin/python",
+        "-m",
+        "trace_repro.claim2_theorem43"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "label": "claim2_exact_primary",
+      "runtime_seconds": 0.07317378791049123,
+      "stderr": "",
+      "stdout": "{\n  \"assumption_audit\": {\n    \"A10_smooth_trajectory\": \"constant alpha, TV=0\",\n    \"A11_sub_gaussian_noise\": \"Gaussian noise is sub-Gaussian\",\n    \"A1_invertible_mixing\": \"g(z)=z\",\n    \"A2_conditional_independence\": \"vacuous for d=1\",\n    \"A3_prime_row_non_degeneracy\": \"the sole 1D row difference is nonzero\",\n    \"A3_sufficient_variability\": \"delta W^(1)=1 is nonzero\",\n    \"A4_basis_full_rank\": true,\n    \"A5_twice_differentiable\": \"linear f and identity h\",\n    \"A6_bounded_total_variation\": true,\n    \"simplex_constraint\": \"alpha=(0.5, 0.5)\"\n  },\n  \"claim\": \"TRACE Theorem 4.3, Equation (7)\",\n  \"constant_mode_lower_bound\": 0.00390625,\n  \"contradiction\": true,\n  \"control\": \"primary\",\n  \"counterexample\": {\n    \"K\": 2,\n    \"alpha_1_t\": 0.5,\n    \"basis_B\": [\n      [\n        1.0\n      ]\n    ],\n    \"d\": 1,\n    \"delta_approx\": 0.0,\n    \"horizon_T\": 64,\n    \"lambda\": 3.9999999999999996,\n    \"noise\": \"iid Gaussian, mean 0\",\n    \"noise_sigma\": 0.5,\n    \"sigma_min\": 1.0,\n    \"total_variation_V\": 0.0\n  },\n  \"displayed_bound_rhs\": 0.0,\n  \"exact_expected_mse\": 0.03404667009563923,\n  \"reason\": \"The constant eigenvector of D^T D has eigenvalue zero, so the smoother preserves its Gaussian noise component. Risk is at least sigma^2/T > 0, while Equation (7) evaluates to zero at V=delta=0.\",\n  \"verdict\": \"FALSIFIED\"\n}\n"
+    },
+    {
+      "behaved_as_expected": true,
+      "command": [
+        "/repo/.venv/bin/python",
+        "-m",
+        "trace_repro.claim2_theorem43",
+        "--negative-control"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "label": "claim2_exact_negative_control",
+      "runtime_seconds": 0.05148527701385319,
+      "stderr": "",
+      "stdout": "{\n  \"assumption_audit\": {\n    \"A10_smooth_trajectory\": \"constant alpha, TV=0\",\n    \"A11_sub_gaussian_noise\": \"Gaussian noise is sub-Gaussian\",\n    \"A1_invertible_mixing\": \"g(z)=z\",\n    \"A2_conditional_independence\": \"vacuous for d=1\",\n    \"A3_prime_row_non_degeneracy\": \"the sole 1D row difference is nonzero\",\n    \"A3_sufficient_variability\": \"delta W^(1)=1 is nonzero\",\n    \"A4_basis_full_rank\": true,\n    \"A5_twice_differentiable\": \"linear f and identity h\",\n    \"A6_bounded_total_variation\": true,\n    \"simplex_constraint\": \"alpha=(0.5, 0.5)\"\n  },\n  \"claim\": \"TRACE Theorem 4.3, Equation (7)\",\n  \"constant_mode_lower_bound\": 0.0,\n  \"contradiction\": false,\n  \"control\": \"zero-noise negative control\",\n  \"counterexample\": {\n    \"K\": 2,\n    \"alpha_1_t\": 0.5,\n    \"basis_B\": [\n      [\n        1.0\n      ]\n    ],\n    \"d\": 1,\n    \"delta_approx\": 0.0,\n    \"horizon_T\": 64,\n    \"lambda\": 3.9999999999999996,\n    \"noise\": \"iid Gaussian, mean 0\",\n    \"noise_sigma\": 0.0,\n    \"sigma_min\": 1.0,\n    \"total_variation_V\": 0.0\n  },\n  \"displayed_bound_rhs\": 0.0,\n  \"exact_expected_mse\": 0.0,\n  \"reason\": \"The constant eigenvector of D^T D has eigenvalue zero, so the smoother preserves its Gaussian noise component. Risk is at least sigma^2/T > 0, while Equation (7) evaluates to zero at V=delta=0.\",\n  \"verdict\": \"NOT_FALSIFIED\"\n}\n"
+    },
+    {
+      "behaved_as_expected": true,
+      "command": [
+        "/repo/.venv/bin/python",
+        "-m",
+        "trace_repro.claim2_independent"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "label": "claim2_independent_primary",
+      "runtime_seconds": 0.8799333970528096,
+      "stderr": "",
+      "stdout": "{\n  \"contradiction\": true,\n  \"control\": \"primary\",\n  \"displayed_bound_rhs\": 0.0,\n  \"empirical_constant_mode_mse\": 0.003966053385246882,\n  \"expected_constant_mode_mse\": 0.00390625,\n  \"horizon_T\": 64,\n  \"implementation\": \"independent seeded Gaussian simulation\",\n  \"lower_five_standard_errors\": 0.0037636534934899317,\n  \"monte_carlo_standard_error\": 4.0479978351390024e-05,\n  \"noise_sigma\": 0.5,\n  \"repetitions\": 20000,\n  \"seed\": 20260729,\n  \"verdict\": \"FALSIFIED\"\n}\n"
+    },
+    {
+      "behaved_as_expected": true,
+      "command": [
+        "/repo/.venv/bin/python",
+        "-m",
+        "trace_repro.claim2_independent",
+        "--negative-control"
+      ],
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "label": "claim2_independent_negative_control",
+      "runtime_seconds": 0.7773208059370518,
+      "stderr": "",
+      "stdout": "{\n  \"contradiction\": false,\n  \"control\": \"zero-noise negative control\",\n  \"displayed_bound_rhs\": 0.0,\n  \"empirical_constant_mode_mse\": 0.0,\n  \"expected_constant_mode_mse\": 0.0,\n  \"horizon_T\": 64,\n  \"implementation\": \"independent seeded Gaussian simulation\",\n  \"lower_five_standard_errors\": 0.0,\n  \"monte_carlo_standard_error\": 0.0,\n  \"noise_sigma\": 0.0,\n  \"repetitions\": 20000,\n  \"seed\": 20260729,\n  \"verdict\": \"NOT_FALSIFIED\"\n}\n"
+    }
+  ],
+  "schema_version": 1,
+  "total_runtime_seconds": 1.7878676468972117
+}
+generated_raw_output=.openresearch/artifacts/claim_2/run_outputs/baseline_summary.json

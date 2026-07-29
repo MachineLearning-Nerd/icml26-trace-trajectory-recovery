@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "title": "TRACE Trajectory Recovery (xRN1Ym2hoa)",
+  "emoji": "🎯",
+  "space_id": "DineshAI/xRN1Ym2hoa",
+  "paper": null,
+  "tags": [
+    "icml2026-repro",
+    "paper-xRN1Ym2hoa"
+  ],
+  "updated_at": "2026-07-29T08:10:00+00:00",
+  "root": {
+    "slug": "index",
+    "title": "TRACE claim-by-claim reproduction",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "current-claim-2",
+        "title": "Claim 2 — exact Theorem 4.3 counterexample",
+        "file": "pages/current/claim-2.md",
+        "children": []
+      },
+      {
+        "slug": "overview",
+        "title": "Historical rejected baseline",
+        "file": "pages/overview/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 1500,
+  "revision": "candidate-claim2"
+}
+

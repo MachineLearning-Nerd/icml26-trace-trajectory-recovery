@@ -1,0 +1,20 @@
+{
+  "verdict": "FALSIFIED",
+  "T": 64,
+  "V": 0,
+  "sigma": 0.5,
+  "sigma_min": 1,
+  "delta_approx": 0,
+  "lambda": 3.9999999999999996,
+  "exact_expected_mse": 0.03404667009563923,
+  "constant_mode_lower_bound": 0.00390625,
+  "displayed_bound_rhs": 0,
+  "independent_seed": 20260729,
+  "independent_repetitions": 20000,
+  "independent_empirical_mse": 0.003966053385246882,
+  "independent_five_se_lower": 0.0037636534934899317,
+  "exact_control_exit": 1,
+  "independent_control_exit": 1,
+  "run_id": "0f6a8434-f54e-4397-a488-d68097e23024",
+  "git_sha": "0acdcbd0141da4cf13c772a5ca492dae8dedd75f"
+}
