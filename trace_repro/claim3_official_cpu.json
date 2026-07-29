@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "purpose": "one-epoch compute-only calibration of an equivalent diagonal-Jacobian implementation at 4 Torch threads",
+  "purpose": "exact paper-scale 100-epoch learned TRACE retraining and unseen-intermediate-state evaluation on CPU",
   "seed": 770,
   "data_seed": 42,
   "estimated_cores": 4,
   "loader_workers": 0,
-  "resource_calibration_only": true,
+  "resource_calibration_only": false,
   "selected_backend": "hf",
   "selected_flavor": "cpu-upgrade",
   "paper_scale": {
@@ -17,7 +17,7 @@
     "batch_size": 64,
     "validation_samples": 2048,
     "epochs_in_paper": 100,
-    "epochs_to_run": 1,
+    "epochs_to_run": 100,
     "hidden_dimension": 128,
     "embedding_dimension": 2,
     "learning_rate": 0.0005,
@@ -26,9 +26,8 @@
   },
   "deviations": [
     "CPU execution instead of the paper's A100 GPU",
-    "one epoch instead of 100; this node is resource calibration and cannot verify a scientific claim",
     "the official Dataset casts each item to float32 on every access; this calibration materializes exactly the same float32 tensors once and machine-checks bitwise equality at fixed indices",
-    "the released transition prior materializes a full batch-by-batch Jacobian and extracts its diagonal; this calibration computes the identical diagonal as grad(output.sum(), input) and checks forward values, parameter gradients, and one Adam update against the released path",
+    "the released transition prior materializes a full batch-by-batch Jacobian and extracts its diagonal; this run computes the identical diagonal as grad(output.sum(), input) and checks forward values, parameter gradients, one Adam update, no-grad validation, and the paper batch size 64 against the released path",
     "num_workers is zero to avoid interprocess copies of an already memory-resident dataset"
   ]
 }

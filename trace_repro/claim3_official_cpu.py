@@ -222,6 +222,18 @@ def audit_diagonal_jacobian_equivalence() -> dict:
                 efficient, validation_x, validation_embeddings
             )
         )
+        paper_batch_x = torch.randn(64, 3, 8)
+        paper_batch_embeddings = torch.randn(64, 2)
+        released_paper_batch_residual, released_paper_batch_logdet = (
+            RELEASED_NPCHANGE_FORWARD(
+                released, paper_batch_x, paper_batch_embeddings
+            )
+        )
+        efficient_paper_batch_residual, efficient_paper_batch_logdet = (
+            efficient_npchange_forward(
+                efficient, paper_batch_x, paper_batch_embeddings
+            )
+        )
     torch.random.set_rng_state(state)
 
     checks = {
@@ -262,6 +274,24 @@ def audit_diagonal_jacobian_equivalence() -> dict:
             )
         )
         <= 1e-6,
+        "paper_batch_64_residual_max_abs_at_most_1e-7": float(
+            torch.max(
+                torch.abs(
+                    released_paper_batch_residual
+                    - efficient_paper_batch_residual
+                )
+            )
+        )
+        <= 1e-7,
+        "paper_batch_64_logdet_max_abs_at_most_1e-6": float(
+            torch.max(
+                torch.abs(
+                    released_paper_batch_logdet
+                    - efficient_paper_batch_logdet
+                )
+            )
+        )
+        <= 1e-6,
     }
     return {
         "method": (
@@ -293,6 +323,22 @@ def audit_diagonal_jacobian_equivalence() -> dict:
             torch.max(
                 torch.abs(
                     released_validation_logdet - efficient_validation_logdet
+                )
+            )
+        ),
+        "paper_batch_64_residual_max_abs": float(
+            torch.max(
+                torch.abs(
+                    released_paper_batch_residual
+                    - efficient_paper_batch_residual
+                )
+            )
+        ),
+        "paper_batch_64_logdet_max_abs": float(
+            torch.max(
+                torch.abs(
+                    released_paper_batch_logdet
+                    - efficient_paper_batch_logdet
                 )
             )
         ),
