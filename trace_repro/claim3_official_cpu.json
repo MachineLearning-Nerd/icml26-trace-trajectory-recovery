@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "purpose": "K_total=10 paper-scale CPU throughput calibration for Claim 6 feasibility; not claim verification",
+  "seed": 770,
+  "data_seed": 42,
+  "estimated_cores": 32,
+  "selected_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "paper_scale": {
+    "domains": 10,
+    "samples_per_domain": 40000,
+    "total_samples": 400000,
+    "latent_dimension": 8,
+    "lags": 2,
+    "batch_size": 64,
+    "validation_samples": 2048,
+    "epochs_in_paper": 100,
+    "epochs_in_calibration": 1,
+    "hidden_dimension": 128,
+    "embedding_dimension": 8,
+    "learning_rate": 0.0005,
+    "beta": 0.002,
+    "gamma": 0.02
+  },
+  "deviations": [
+    "CPU execution instead of the paper's A100 GPU",
+    "one epoch instead of 100; this node estimates whether exact K_total=10 Claim 6 training fits the 24-hour job limit and cannot verify a scientific claim"
+  ]
+}
