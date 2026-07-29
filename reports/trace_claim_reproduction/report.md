@@ -69,6 +69,8 @@ released.
 
 ## A recovery metric that ignores time
 
+![](images/w_metric_blind_spot.svg)
+
 Claim 6 says full `W(t)` correlation stays above `0.995` even when alpha
 recovery degrades. The released scorer correlates flattened full matrices,
 including invariant `W_base`. A constant mean-alpha prediction has exactly
@@ -90,6 +92,8 @@ measured CPU throughput projects 295 hours, and the referenced checkpoint is
 absent.
 
 ## Real-data release audit
+
+![](images/release_capability_matrix.svg)
 
 The released package has no UAVDT implementation, real-data checkpoint, or
 exact frame manifest. Its MoCap script expects an absent
@@ -118,6 +122,8 @@ MoCap results. They do not falsify those finite values.
 | 6 | alpha collapse, W at least `0.995` | metric pathology; checkpoint absent | BLOCKED |
 
 ## Compute and reproducibility
+
+![](images/cpu_feasibility.svg)
 
 Short deterministic checks use local CPU and finish within five minutes.
 Uncertain or long work uses Hugging Face `cpu-upgrade`; containers expose 64
