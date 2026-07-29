@@ -44,6 +44,10 @@ Cumulative run `2f5c4b3b-d723-4423-9cd1-d5d67fdc6c9f`, Git
 suite. Resource estimate was one core and under five minutes; the host exposed
 eight logical CPUs.
 
+**CPU/runtime:** estimated one core and under five minutes; local host exposed
+eight logical CPUs; cumulative wall time 121.746 seconds. **Seeds:** none; the
+46-file release audit and its injected-capability control are deterministic.
+
 | Audit quantity | Result |
 | --- | --- |
 | released source files hashed | 46 |

@@ -34,7 +34,7 @@ NCTRL repository at Git `d2540bb5d0ebe7e75f68ebb490a94fe019a65c52`.
 The complete-release negative control injects both missing comparator
 capabilities, makes the blocker audit fail, and exits 1.
 
-## Executable audit
+## Raw executable result
 
 Fixed command:
 
@@ -44,6 +44,12 @@ uv run --frozen python -m trace_repro.run_all
 
 Cumulative run `2f5c4b3b-d723-4423-9cd1-d5d67fdc6c9f`, Git
 `73ae3790dc3b01d68eb2d715452e122643710e50`, local CPU, returned:
+
+**CPU/runtime:** estimated one core and under five minutes; local host exposed
+eight logical CPUs; cumulative wall time 121.746 seconds. **Seeds:** none for
+this deterministic release audit. The learned TRACE route has a separate,
+pre-registered five-seed protocol and is not used to remove the comparator
+blocker.
 
 | Released capability | Found |
 | --- | --- |

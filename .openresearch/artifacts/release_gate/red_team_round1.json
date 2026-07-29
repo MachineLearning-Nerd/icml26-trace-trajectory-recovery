@@ -1,0 +1,199 @@
+{
+  "blind_review_passed": false,
+  "claim_reviews": {
+    "1": {
+      "checks": {
+        "assumption_or_protocol_audit": true,
+        "checker_or_verifier_explained": true,
+        "code_reached": true,
+        "cpu_and_runtime_inline": false,
+        "exact_claim_or_source_quantifiers": true,
+        "fixed_command_inline": true,
+        "git_sha_or_revision_inline": true,
+        "limitations_or_unblocking_scope": true,
+        "negative_control_explained": true,
+        "raw_files_reached": true,
+        "raw_values_inline": true,
+        "seed_disposition_inline": false,
+        "terminal_verdict": true
+      },
+      "links_followed": [
+        "evidence/claim_1/claim_contract.json",
+        "evidence/claim_1/source_audit.md",
+        "evidence/claim_1/claim1_attribution.py",
+        "evidence/claim_1/exact_attribution.json",
+        "evidence/claim_1/corrected_attribution_control.json",
+        "evidence/environment/pyproject.toml"
+      ],
+      "page": "pages/current/claim-1.md",
+      "reviewer_verdict": "FALSIFIED"
+    },
+    "2": {
+      "checks": {
+        "assumption_or_protocol_audit": true,
+        "checker_or_verifier_explained": true,
+        "code_reached": true,
+        "cpu_and_runtime_inline": true,
+        "exact_claim_or_source_quantifiers": true,
+        "fixed_command_inline": true,
+        "git_sha_or_revision_inline": true,
+        "limitations_or_unblocking_scope": true,
+        "negative_control_explained": true,
+        "raw_files_reached": true,
+        "raw_values_inline": true,
+        "seed_disposition_inline": true,
+        "terminal_verdict": true
+      },
+      "links_followed": [
+        "evidence/claim_2/claim_contract.json",
+        "evidence/claim_2/claim2_theorem43.py",
+        "evidence/claim_2/claim2_independent.py",
+        "evidence/claim_2/raw_results.json",
+        "evidence/claim_2/baseline_run.log",
+        "evidence/environment/pyproject.toml",
+        "evidence/environment/uv.lock"
+      ],
+      "page": "pages/current/claim-2.md",
+      "reviewer_verdict": "FALSIFIED"
+    },
+    "3": {
+      "checks": {
+        "assumption_or_protocol_audit": true,
+        "checker_or_verifier_explained": true,
+        "code_reached": true,
+        "cpu_and_runtime_inline": false,
+        "exact_claim_or_source_quantifiers": true,
+        "fixed_command_inline": true,
+        "git_sha_or_revision_inline": true,
+        "limitations_or_unblocking_scope": true,
+        "negative_control_explained": true,
+        "raw_files_reached": true,
+        "raw_values_inline": false,
+        "seed_disposition_inline": false,
+        "terminal_verdict": true
+      },
+      "links_followed": [
+        "evidence/claim_3/claim_contract.json",
+        "evidence/claim_3/nctrl_source_audit.md",
+        "evidence/claim_3/claim3_nctrl_audit.py",
+        "evidence/claim_3/nctrl_release_audit.json",
+        "evidence/claim_3/nctrl_complete_release_control.json"
+      ],
+      "page": "pages/current/claim-3.md",
+      "reviewer_verdict": "BLOCKED"
+    },
+    "4": {
+      "checks": {
+        "assumption_or_protocol_audit": true,
+        "checker_or_verifier_explained": true,
+        "code_reached": true,
+        "cpu_and_runtime_inline": false,
+        "exact_claim_or_source_quantifiers": true,
+        "fixed_command_inline": true,
+        "git_sha_or_revision_inline": true,
+        "limitations_or_unblocking_scope": true,
+        "negative_control_explained": true,
+        "raw_files_reached": true,
+        "raw_values_inline": true,
+        "seed_disposition_inline": false,
+        "terminal_verdict": true
+      },
+      "links_followed": [
+        "evidence/claim_4/claim_contract.json",
+        "evidence/claim_4/source_audit.md",
+        "evidence/claim_4/claim4_release_audit.py",
+        "evidence/claim_4/release_audit.json",
+        "evidence/claim_4/release_audit_negative_control.json"
+      ],
+      "page": "pages/current/claim-4.md",
+      "reviewer_verdict": "BLOCKED"
+    },
+    "6": {
+      "checks": {
+        "assumption_or_protocol_audit": false,
+        "checker_or_verifier_explained": true,
+        "code_reached": true,
+        "cpu_and_runtime_inline": true,
+        "exact_claim_or_source_quantifiers": true,
+        "fixed_command_inline": true,
+        "git_sha_or_revision_inline": true,
+        "limitations_or_unblocking_scope": false,
+        "negative_control_explained": true,
+        "raw_files_reached": true,
+        "raw_values_inline": true,
+        "seed_disposition_inline": false,
+        "terminal_verdict": true
+      },
+      "links_followed": [
+        "evidence/claim_6/claim_contract.json",
+        "evidence/claim_6/source_audit.md",
+        "evidence/claim_6/claim6_w_metric.py",
+        "evidence/claim_6/claim6_independent.py",
+        "evidence/claim_6/claim6_final_assessment.py",
+        "evidence/claim_6/primary_constant_alpha.json",
+        "evidence/claim_6/independent_constant_alpha.json",
+        "evidence/claim_6/cpu_feasibility_observation.json",
+        "evidence/claim_6/four_routes.md"
+      ],
+      "page": "pages/current/claim-6.md",
+      "reviewer_verdict": "BLOCKED"
+    }
+  },
+  "conclusions_not_verified": [
+    "claim 1: missing seed_disposition_inline, cpu_and_runtime_inline",
+    "claim 3: missing raw_values_inline, seed_disposition_inline, cpu_and_runtime_inline",
+    "claim 4: missing seed_disposition_inline, cpu_and_runtime_inline",
+    "claim 5: current page not found through navigation",
+    "claim 6: missing assumption_or_protocol_audit, limitations_or_unblocking_scope, seed_disposition_inline"
+  ],
+  "files_opened_in_order": [
+    "README.md",
+    "logbook.json",
+    "pages/index.md",
+    "pages/current/claim-1.md",
+    "pages/current/claim-2.md",
+    "pages/current/claim-3.md",
+    "pages/current/claim-4.md",
+    "pages/current/claim-6.md",
+    "pages/overview/page.md",
+    "evidence/claim_1/claim_contract.json",
+    "evidence/claim_1/source_audit.md",
+    "evidence/claim_1/claim1_attribution.py",
+    "evidence/claim_1/exact_attribution.json",
+    "evidence/claim_1/corrected_attribution_control.json",
+    "evidence/environment/pyproject.toml",
+    "evidence/claim_2/claim_contract.json",
+    "evidence/claim_2/claim2_theorem43.py",
+    "evidence/claim_2/claim2_independent.py",
+    "evidence/claim_2/raw_results.json",
+    "evidence/claim_2/baseline_run.log",
+    "evidence/environment/pyproject.toml",
+    "evidence/environment/uv.lock",
+    "evidence/claim_3/claim_contract.json",
+    "evidence/claim_3/nctrl_source_audit.md",
+    "evidence/claim_3/claim3_nctrl_audit.py",
+    "evidence/claim_3/nctrl_release_audit.json",
+    "evidence/claim_3/nctrl_complete_release_control.json",
+    "evidence/claim_4/claim_contract.json",
+    "evidence/claim_4/source_audit.md",
+    "evidence/claim_4/claim4_release_audit.py",
+    "evidence/claim_4/release_audit.json",
+    "evidence/claim_4/release_audit_negative_control.json",
+    "evidence/claim_6/claim_contract.json",
+    "evidence/claim_6/source_audit.md",
+    "evidence/claim_6/claim6_w_metric.py",
+    "evidence/claim_6/claim6_independent.py",
+    "evidence/claim_6/claim6_final_assessment.py",
+    "evidence/claim_6/primary_constant_alpha.json",
+    "evidence/claim_6/independent_constant_alpha.json",
+    "evidence/claim_6/cpu_feasibility_observation.json",
+    "evidence/claim_6/four_routes.md"
+  ],
+  "review_scope": "candidate directory only; no repository or run database",
+  "schema_version": 1,
+  "starting_entrypoints": [
+    "README.md",
+    "logbook.json",
+    "pages/index.md"
+  ]
+}

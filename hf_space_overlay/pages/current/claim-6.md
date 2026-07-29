@@ -3,13 +3,18 @@
 **Verdict: BLOCKED after four routes.** This page supersedes the toy Claim 6
 discussion in the **Historical rejected baseline**.
 
-## Exact claim
+## Exact protocol and assumptions
 
 For `d=8`, `K_total=10`, complex trajectories, Appendix E.4 Table 12 reports
 alpha correlation `0.979 +/- 0.003` at `K_active=2` and
 `0.459 +/- 0.052` at `K_active=7`. The corresponding full-W correlations are
 `1.000` and `0.998`; every W correlation in the table is at least `0.995`.
 The experiment uses `T=50`, 500 observations per time, and a learned encoder.
+The diagnostic below preserves the paper's released `d=8`, `K_total=10`,
+`K_active=7`, complex-trajectory geometry and the exact released full-W
+scorer. It deliberately changes the predicted alpha trajectory to a constant
+control, so it diagnoses the metric but is not presented as a learned-model
+counterexample.
 
 The released scorer flattens
 `W(t) = W_base + sum_k alpha_k(t) delta_W_k` and computes one global Pearson
@@ -65,6 +70,11 @@ The exact K=10 calibration used Hugging Face `cpu-upgrade`, run
 `af0097c2-6711-4260-bd6f-029c991850fd`; estimate 32 useful threads, actual 64
 CPUs visible and 32 configured threads, cancelled after 4m51s.
 
+**Seeds:** the structural route uses
+`20260729, 20260730, 20260731, 20260732, 20260733`; the matrix construction
+uses seed `42`. Truth, complete-evidence, and source-hash controls are
+deterministic.
+
 ## Evidence
 
 - [Claim contract](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/claim_6/claim_contract.json)
@@ -79,3 +89,12 @@ CPUs visible and 32 configured threads, cancelled after 4m51s.
 
 The complete-evidence negative control removes the checkpoint/runtime blocker;
 the verifier changes the result to `NOT_BLOCKED` and exits 1.
+
+## Limitations and unblocking
+
+The control establishes that the released full-W correlation can remain above
+the paper's `0.995` floor with no temporal signal. It does not contradict the
+reported learned TRACE alpha correlations because the constant predictor is
+not a learned TRACE output. Resolving that finite empirical claim requires the
+exact trained checkpoint or an affordable faithful 100-epoch K=10 rerun with
+the paper's data construction and all seeds.
