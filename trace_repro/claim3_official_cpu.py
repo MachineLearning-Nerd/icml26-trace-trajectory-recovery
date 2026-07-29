@@ -19,7 +19,7 @@ import time
 
 import numpy as np
 import torch
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader, Dataset, random_split
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,6 +52,44 @@ def cpu_allocation(estimated: int) -> dict:
         "os_cpu_count": os.cpu_count(),
         "process_affinity_cpus": affinity,
         "platform": platform.platform(),
+    }
+
+
+class Float32TensorDataset(Dataset):
+    """Materialize the release dataset's per-item float32 casts exactly once."""
+
+    def __init__(self, source: TimeVaryingDataset) -> None:
+        self.yt = torch.from_numpy(np.asarray(source.data["yt"], dtype=np.float32))
+        self.xt = torch.from_numpy(np.asarray(source.data["xt"], dtype=np.float32))
+        self.ct = torch.from_numpy(np.asarray(source.data["ct"], dtype=np.float32))
+
+    def __len__(self) -> int:
+        return len(self.yt)
+
+    def __getitem__(self, index: int) -> dict:
+        return {"yt": self.yt[index], "xt": self.xt[index], "ct": self.ct[index]}
+
+
+def audit_tensorized_equivalence(
+    source: TimeVaryingDataset, tensorized: Float32TensorDataset
+) -> dict:
+    indices = [0, 1, 17, len(source) // 2, len(source) - 1]
+    fields = ("yt", "xt", "ct")
+    checks = {
+        f"index_{index}_{field}_bitwise_equal": torch.equal(
+            source[index][field], tensorized[index][field]
+        )
+        for index in indices
+        for field in fields
+    }
+    return {
+        "method": (
+            "compare the official per-item NumPy astype(float32) path with "
+            "one-time float32 tensor materialization at five fixed indices"
+        ),
+        "indices": indices,
+        "checks": checks,
+        "all_checks_passed": all(checks.values()),
     }
 
 
@@ -257,21 +295,26 @@ def main() -> int:
         os.chdir(old_cwd)
     generation_seconds = time.perf_counter() - generation_started
 
-    dataset = TimeVaryingDataset(
+    source_dataset = TimeVaryingDataset(
         directory=str(dataset_root),
         transition=f"{scale['domains']}_domains",
         dataset="source",
     )
+    training_dataset = Float32TensorDataset(source_dataset)
+    equivalence = audit_tensorized_equivalence(source_dataset, training_dataset)
     split_generator = torch.Generator().manual_seed(config["seed"])
     train_data, val_data = random_split(
-        dataset,
-        [len(dataset) - scale["validation_samples"], scale["validation_samples"]],
+        training_dataset,
+        [
+            len(training_dataset) - scale["validation_samples"],
+            scale["validation_samples"],
+        ],
         generator=split_generator,
     )
     train_loader = DataLoader(
         train_data,
         batch_size=scale["batch_size"],
-        num_workers=config["estimated_cores"],
+        num_workers=config["loader_workers"],
         pin_memory=False,
         shuffle=True,
         generator=torch.Generator().manual_seed(config["seed"]),
@@ -279,7 +322,7 @@ def main() -> int:
     val_loader = DataLoader(
         val_data,
         batch_size=256,
-        num_workers=config["estimated_cores"],
+        num_workers=config["loader_workers"],
         pin_memory=False,
         shuffle=False,
     )
@@ -336,16 +379,57 @@ def main() -> int:
     trainer.fit(model, train_loader, val_loader)
     training_seconds = time.perf_counter() - training_started
     after_mcc = validation_mcc(model, val_loader)
+    batches_per_epoch = len(train_loader)
+
+    if config["resource_calibration_only"]:
+        result = {
+            "schema_version": 1,
+            "purpose": config["purpose"],
+            "official_trace_source_sha": (
+                "f71d7ed89f721cfe4a134cf04be0e6a05795e4b6"
+            ),
+            "seed": config["seed"],
+            "data_seed": config["data_seed"],
+            "allocation": cpu_allocation(config["estimated_cores"]),
+            "loader_workers": config["loader_workers"],
+            "paper_scale": scale,
+            "dataset_samples_observed": len(source_dataset),
+            "train_samples": len(train_data),
+            "validation_samples": len(val_data),
+            "batches_per_epoch": batches_per_epoch,
+            "generation_seconds": generation_seconds,
+            "training_seconds": training_seconds,
+            "seconds_per_batch": training_seconds / batches_per_epoch,
+            "projected_100_epoch_hours": training_seconds * 100.0 / 3600.0,
+            "validation_mcc_before": before_mcc,
+            "validation_mcc_after_training": after_mcc,
+            "tensorized_equivalence": equivalence,
+            "deviations": config["deviations"],
+            "verdict": "RESOURCE_CALIBRATION_ONLY",
+        }
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        output_path = OUTPUT / "tensorized_cpu_calibration.json"
+        output_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+        print("\nTRACE_TENSORIZED_CPU_CALIBRATION")
+        print(json.dumps(result, indent=2, sort_keys=True))
+        print(f"generated_raw_output={output_path.relative_to(ROOT)}")
+        checks = [
+            len(source_dataset) == scale["domains"] * scale["samples_per_domain"],
+            batches_per_epoch > 3000,
+            training_seconds > 0,
+            equivalence["all_checks_passed"],
+        ]
+        return 0 if all(checks) else 1
+
     trajectory_started = time.perf_counter()
     trajectory_results = evaluate_trajectories(
         model,
-        dataset,
+        source_dataset,
         str(generated_path),
         seeds=[42, 142, 242, 342, 442],
     )
     trajectory_seconds = time.perf_counter() - trajectory_started
 
-    batches_per_epoch = len(train_loader)
     aggregate = trajectory_results["aggregate"]
     preregistered_checks = {
         "learned_encoder_mcc_at_least_0_90": after_mcc >= 0.90,
@@ -370,7 +454,7 @@ def main() -> int:
         "data_seed": config["data_seed"],
         "allocation": cpu_allocation(config["estimated_cores"]),
         "paper_scale": scale,
-        "dataset_samples_observed": len(dataset),
+        "dataset_samples_observed": len(source_dataset),
         "train_samples": len(train_data),
         "validation_samples": len(val_data),
         "batches_per_epoch": batches_per_epoch,
@@ -384,6 +468,7 @@ def main() -> int:
         "validation_mcc_before": before_mcc,
         "validation_mcc_after_training": after_mcc,
         "trajectory_evaluation": trajectory_results,
+        "tensorized_equivalence": equivalence,
         "preregistered_checks": preregistered_checks,
         "deviations": config["deviations"],
         "verdict": (
@@ -400,11 +485,12 @@ def main() -> int:
     print(f"generated_raw_output={output_path.relative_to(ROOT)}")
 
     checks = [
-        len(dataset) == scale["domains"] * scale["samples_per_domain"],
+        len(source_dataset) == scale["domains"] * scale["samples_per_domain"],
         batches_per_epoch > 3000,
         np.isfinite(before_mcc),
         np.isfinite(after_mcc),
         training_seconds > 0,
+        equivalence["all_checks_passed"],
         all(preregistered_checks.values()),
     ]
     return 0 if all(checks) else 1

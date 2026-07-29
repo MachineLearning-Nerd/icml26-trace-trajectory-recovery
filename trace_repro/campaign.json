@@ -2,12 +2,12 @@
   "schema_version": 1,
   "enabled_checks": [
     "claim_2_theorem_4_3",
-    "claim_3_paper_scale_learned"
+    "claim_3_tensorized_cpu_calibration"
   ],
   "paper_id": "2601.21135v2",
   "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
   "selected_compute_backend": "hf",
   "selected_compute_flavor": "cpu-upgrade",
   "estimated_cores": 8,
-  "runtime_estimate": "paper-scale data generation plus 100 exact training epochs and five-seed trajectory evaluation: calibrated at 16.1 hours on 8 CPU threads"
+  "runtime_estimate": "one exact paper-scale calibration epoch with a bitwise-equivalent tensorized loader: under 30 minutes on 8 CPU threads"
 }
