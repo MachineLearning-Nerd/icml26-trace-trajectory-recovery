@@ -15,7 +15,7 @@ revision; no score increase is claimed here.
 | 5 — unseen intermediate states | VERIFIED | [Paper-scale unseen-state verification](#/current-claim-5) |
 | 6 — geometric bottleneck | BLOCKED | [Metric audit and four routes](#/current-claim-6) |
 
-This remains an unpublished release candidate. Previous live judged score:
+This is published candidate evidence awaiting live judge evaluation. Previous live judged score:
 `4/12`. Conservative projected range after publication: `6–8/12`.
 Best-supported possible score: `8/12` (forecast only, not a judge result).
 Claim 5 now has direct paper-scale learned evidence; Claim 3 remains BLOCKED

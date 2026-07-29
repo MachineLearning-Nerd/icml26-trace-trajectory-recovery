@@ -112,7 +112,7 @@ The approved 87-path text-only allowlist was uploaded atomically to the
 existing Space `DineshAI/xRN1Ym2hoa` with parent commit
 `8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. No second Space was created.
 The exact published revision is
-`c3fcc96479365998dc02d1a7103b44f25e728a24`.
+`6461c1c52419c92882a1cf436220b8600985c104`.
 
 A fresh download of that revision passed all 87 hash checks, retained all
 13 historical judged paths among 97 published paths, passed canonical

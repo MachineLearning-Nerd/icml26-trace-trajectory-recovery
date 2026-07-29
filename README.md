@@ -18,7 +18,7 @@ right-hand side is `0` while exact expected MSE is `0.0340467`.
 This is not a new judge result. The live score remains **4/12** and the Judge
 Head remains `8336cbc2a29260f27248e11b9c48f1bb0a7f2266`. The evidence is
 published at Hugging Face revision
-`c3fcc96479365998dc02d1a7103b44f25e728a24` and is awaiting evaluation.
+`6461c1c52419c92882a1cf436220b8600985c104` and is awaiting evaluation.
 Current reproduction assessments are: Claims 1 and 2 FALSIFIED in their exact
 judged wording; Claims 3, 4, and 6 BLOCKED by missing released capabilities
 after their required routes; Claim 5 VERIFIED on the specified synthetic
