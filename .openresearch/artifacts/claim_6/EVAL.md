@@ -7,12 +7,22 @@ and centered-W correlation `0.593566`. The independent checker matched. Because
 the pre-registered centered-correlation threshold was `<0.25`, Route 1 did not
 pass and its contract was not changed after seeing the result.
 
-Route 2 is pending execution. It replaces the ambiguous centered-correlation
-threshold with an exact structural control: a constant prediction has zero
-temporal alpha and W variation by construction.
+Route 2 passed its pre-registered structural criterion. A constant mean-alpha
+prediction had alpha MAE `0.093294`, alpha temporal-variation ratio below
+`1e-15`, W temporal-variation ratio below `1.5e-14`, and nevertheless obtained
+released full-W correlation `0.998742`. The independent manual-Pearson checker
+matched. Exact-truth controls did not trigger the verifier and exited 1.
 
-Even if the metric audit passes, it does not by itself reproduce or falsify
-the learned-model table. It establishes whether the released W score is a
-discriminative recovery metric. The exact learned-model result remains blocked
-until the referenced 10-domain checkpoint is available or exact training can
-be completed on authorized CPU compute.
+Route 3 measured exact K=10 training throughput on Hugging Face `cpu-upgrade`.
+At 1.74--1.77 seconds per batch over 6,218 batches, the released 100-epoch
+protocol projects to about 295 hours; the run was cancelled after 134 batches.
+
+Route 4 restated the exact table claim and sought an assumption-matched
+counterexample. The zero-temporal control defeats the metric interpretation,
+but it is not a learned TRACE output and does not contradict the printed
+numbers. Therefore it is not a valid falsification.
+
+Final verdict: **BLOCKED**. All four required routes are complete. The missing
+capability is the referenced 10-domain checkpoint or enough authorized CPU
+time to complete the exact protocol. The complete-evidence negative control
+removes this blocker, makes the verifier reject `BLOCKED`, and exits nonzero.

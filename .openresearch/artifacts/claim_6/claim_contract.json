@@ -11,6 +11,6 @@
     "negative_control": "Substituting the exact true alpha must not trigger the pathology verifier and must exit 1.",
     "independent_checker": "Reconstruct the released matrices and metric using a separate implementation with manual Pearson correlation and direct temporal-norm ratios."
   },
-  "claim_verdict_after_this_route": "UNRESOLVED",
-  "reason": "A passing audit invalidates the reported metric as discriminative evidence, but does not by itself contradict the table's numerical values or reproduce the learned encoder."
+  "claim_verdict_after_four_routes": "BLOCKED",
+  "reason": "The metric audit invalidates full-W correlation as discriminative trajectory evidence but does not contradict the printed learned-model values. The referenced checkpoint is absent and measured CPU throughput projects about 295 hours for exact 100-epoch regeneration."
 }

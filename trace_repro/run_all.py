@@ -124,6 +124,21 @@ def main() -> int:
                 negative=False,
             )
         )
+    if "claim_6_final_assessment" in CONFIG["enabled_checks"]:
+        records.extend(
+            [
+                invoke(
+                    "claim6_final_assessment",
+                    "trace_repro.claim6_final_assessment",
+                    negative=False,
+                ),
+                invoke(
+                    "claim6_final_complete_evidence_control",
+                    "trace_repro.claim6_final_assessment",
+                    negative=True,
+                ),
+            ]
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,

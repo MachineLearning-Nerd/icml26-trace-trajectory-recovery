@@ -38,8 +38,8 @@ def allocation() -> dict:
         affinity = len(os.sched_getaffinity(0))
     return {
         "estimated_cores": 1,
-        "selected_backend": "hf",
-        "selected_flavor": "cpu-upgrade",
+        "selected_backend": "local",
+        "selected_flavor": "none",
         "os_cpu_count": os.cpu_count(),
         "process_affinity_cpus": affinity,
         "platform": platform.platform(),
