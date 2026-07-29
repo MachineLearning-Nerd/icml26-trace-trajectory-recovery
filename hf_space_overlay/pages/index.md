@@ -23,6 +23,7 @@ of Claim 3 are awaiting the terminal learned run; no forecast is made yet.
 | Page | Label |
 | --- | --- |
 | [overview](#/overview) | Historical rejected baseline |
+| [protected canonical text](https://huggingface.co/spaces/DineshAI/xRN1Ym2hoa/blob/main/evidence/protected_judged_revision/PROVENANCE.md) | Exact judged revision archive |
 
 ## Visibility matrix
 

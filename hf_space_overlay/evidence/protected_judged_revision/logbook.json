@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "title": "TRACE Trajectory Recovery (xRN1Ym2hoa)",
+  "emoji": "🎯",
+  "space_id": "DineshAI/xRN1Ym2hoa",
+  "paper": null,
+  "tags": [
+    "icml2026-repro",
+    "paper-xRN1Ym2hoa"
+  ],
+  "updated_at": "2026-07-29T06:33:14+00:00",
+  "root": {
+    "slug": "index",
+    "title": "TRACE Trajectory Recovery (xRN1Ym2hoa)",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "overview",
+        "title": "overview",
+        "file": "pages/overview/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 413,
+  "revision": "1785306794606001874"
+}
