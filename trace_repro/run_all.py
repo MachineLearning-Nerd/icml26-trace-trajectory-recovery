@@ -89,6 +89,21 @@ def main() -> int:
                 negative=False,
             )
         )
+    if "claim_4_release_audit" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim4_release_audit",
+                "trace_repro.claim4_release_audit",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim4_release_audit_negative_control",
+                "trace_repro.claim4_release_audit",
+                negative=True,
+            )
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,

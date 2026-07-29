@@ -2,12 +2,12 @@
   "schema_version": 1,
   "enabled_checks": [
     "claim_2_theorem_4_3",
-    "claim_3_official_cpu_calibration"
+    "claim_4_release_audit"
   ],
   "paper_id": "2601.21135v2",
   "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
   "selected_compute_backend": "hf",
   "selected_compute_flavor": "cpu-upgrade",
   "estimated_cores": 1,
-  "runtime_estimate": "paper-scale data generation plus one exact training epoch: uncertain; expected 15-90 minutes on 8 CPU cores"
+  "runtime_estimate": "static source and release audit; expected under one minute on one CPU core"
 }
