@@ -76,9 +76,9 @@ def main(argv=None):
         if args.negative_control:
             predicted_alpha = true_alpha.copy()
         else:
-            predicted_alpha = np.random.RandomState(
-                seed + 7000 + 17 * len("complex")
-            ).dirichlet(np.ones(7), size=50)
+            predicted_alpha = np.repeat(
+                true_alpha.mean(axis=0, keepdims=True), 50, axis=0
+            )
         true_innovation = true_alpha @ delta[active]
         predicted_innovation = predicted_alpha @ delta[active]
         true_full = true_innovation + base[None, :]
@@ -86,40 +86,51 @@ def main(argv=None):
         records.append(
             {
                 "seed": seed,
-                "alpha_corr_mean": float(
-                    np.mean(
-                        [
-                            pearson_manual(true_alpha[:, i], predicted_alpha[:, i])
-                            for i in range(7)
-                        ]
-                    )
-                ),
                 "alpha_mae": float(np.mean(np.abs(true_alpha - predicted_alpha))),
                 "official_w_corr_global": pearson_manual(true_full, predicted_full),
                 "centered_w_corr_global": pearson_manual(
                     true_innovation, predicted_innovation
+                ),
+                "alpha_temporal_variation_ratio": float(
+                    np.linalg.norm(
+                        predicted_alpha
+                        - predicted_alpha.mean(axis=0, keepdims=True)
+                    )
+                    / np.linalg.norm(
+                        true_alpha - true_alpha.mean(axis=0, keepdims=True)
+                    )
+                ),
+                "w_temporal_variation_ratio": float(
+                    np.linalg.norm(
+                        predicted_innovation
+                        - predicted_innovation.mean(axis=0, keepdims=True)
+                    )
+                    / np.linalg.norm(
+                        true_innovation - true_innovation.mean(axis=0, keepdims=True)
+                    )
                 ),
             }
         )
     means = {
         key: float(np.mean([row[key] for row in records]))
         for key in (
-            "alpha_corr_mean",
             "alpha_mae",
             "official_w_corr_global",
             "centered_w_corr_global",
+            "alpha_temporal_variation_ratio",
+            "w_temporal_variation_ratio",
         )
     }
     detected = (
-        abs(means["alpha_corr_mean"]) < 0.25
-        and means["alpha_mae"] > 0.10
+        means["alpha_mae"] > 0.05
         and means["official_w_corr_global"] >= 0.995
-        and abs(means["centered_w_corr_global"]) < 0.25
+        and means["alpha_temporal_variation_ratio"] < 1e-12
+        and means["w_temporal_variation_ratio"] < 1e-12
     )
     result = {
         "schema_version": 1,
         "implementation": "independent manual Pearson and flattened delta basis",
-        "control": "truth" if args.negative_control else "unrelated Dirichlet alpha",
+        "control": "truth" if args.negative_control else "constant mean alpha",
         "seeds": SEEDS,
         "k_active": 7,
         "trajectory": "complex",
@@ -128,7 +139,7 @@ def main(argv=None):
         "pathology_detected": detected,
     }
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    suffix = "truth_control" if args.negative_control else "wrong_alpha"
+    suffix = "truth_control" if args.negative_control else "constant_alpha"
     (OUTPUT / f"independent_{suffix}.json").write_text(
         json.dumps(result, indent=2, sort_keys=True) + "\n"
     )

@@ -123,25 +123,32 @@ def one_row(k_active, kind, seed, truth_control, w_base, deltas):
     if truth_control:
         alpha_pred = alpha_true.copy()
     else:
-        rng = np.random.RandomState(seed + 1000 * k_active + 17 * len(kind))
-        alpha_pred = rng.dirichlet(np.ones(k_active), size=T)
+        # A constant prediction has exactly zero trajectory information.
+        alpha_pred = np.repeat(alpha_true.mean(axis=0, keepdims=True), T, axis=0)
     w_true = w_sequence(alpha_true, active, w_base, deltas)
     w_pred = w_sequence(alpha_pred, active, w_base, deltas)
-    alpha_component_corrs = [
-        safe_corr(alpha_true[:, index], alpha_pred[:, index])
-        for index in range(k_active)
-    ]
+    alpha_true_temporal = alpha_true - alpha_true.mean(axis=0, keepdims=True)
+    alpha_pred_temporal = alpha_pred - alpha_pred.mean(axis=0, keepdims=True)
+    w_true_temporal = w_true - w_true.mean(axis=0, keepdims=True)
+    w_pred_temporal = w_pred - w_pred.mean(axis=0, keepdims=True)
     return {
         "k_active": k_active,
         "trajectory": kind,
         "seed": seed,
-        "control": "truth" if truth_control else "unrelated_dirichlet_alpha",
-        "alpha_corr_mean": float(np.mean(alpha_component_corrs)),
+        "control": "truth" if truth_control else "constant_mean_alpha",
         # This is the released ablation_W_recovery.py global metric.
         "official_w_corr_global": safe_corr(w_true, w_pred),
         # Independent diagnostic removes the invariant matrix before scoring.
         "centered_w_corr_global": safe_corr(w_true - w_base, w_pred - w_base),
         "alpha_mae": float(np.mean(np.abs(alpha_true - alpha_pred))),
+        "alpha_temporal_variation_ratio": float(
+            np.linalg.norm(alpha_pred_temporal)
+            / max(np.linalg.norm(alpha_true_temporal), np.finfo(float).eps)
+        ),
+        "w_temporal_variation_ratio": float(
+            np.linalg.norm(w_pred_temporal)
+            / max(np.linalg.norm(w_true_temporal), np.finfo(float).eps)
+        ),
         "w_relative_innovation_error": float(
             np.linalg.norm(w_true - w_pred)
             / max(np.linalg.norm(w_true - w_base), np.finfo(float).eps)
@@ -177,18 +184,19 @@ def main(argv=None) -> int:
     target_means = {
         key: float(np.mean([row[key] for row in target]))
         for key in (
-            "alpha_corr_mean",
             "official_w_corr_global",
             "centered_w_corr_global",
             "alpha_mae",
+            "alpha_temporal_variation_ratio",
+            "w_temporal_variation_ratio",
             "w_relative_innovation_error",
         )
     }
     pathology_detected = (
-        abs(target_means["alpha_corr_mean"]) < 0.25
-        and target_means["alpha_mae"] > 0.10
+        target_means["alpha_mae"] > 0.05
         and target_means["official_w_corr_global"] >= 0.995
-        and abs(target_means["centered_w_corr_global"]) < 0.25
+        and target_means["alpha_temporal_variation_ratio"] < 1e-12
+        and target_means["w_temporal_variation_ratio"] < 1e-12
     )
     summary = {
         "schema_version": 1,
@@ -206,16 +214,16 @@ def main(argv=None) -> int:
         },
         "seeds": SEEDS,
         "allocation": allocation(),
-        "control": "truth" if args.negative_control else "unrelated Dirichlet alpha",
+        "control": "truth" if args.negative_control else "constant mean alpha",
         "matrix_generation_seed": 42,
         "matrix_condition_threshold": condition_threshold,
         "delta_edges": edges,
         "k7_complex_means": target_means,
         "pathology_detected": pathology_detected,
         "interpretation": (
-            "The released global W correlation is dominated by the invariant W_base. "
-            "A deliberately unrelated alpha trajectory can therefore meet the paper's "
-            "0.995 W-correlation threshold while alpha and centered-W correlations fail."
+            "The released global W correlation mixes invariant spatial structure with "
+            "temporal recovery. A constant prediction with exactly zero temporal W "
+            "variation can therefore meet the paper's 0.995 threshold."
         ),
         "scientific_scope": (
             "This invalidates the metric as evidence of W(t) recovery. It does not "
@@ -223,7 +231,7 @@ def main(argv=None) -> int:
         ),
     }
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    suffix = "truth_control" if args.negative_control else "wrong_alpha"
+    suffix = "truth_control" if args.negative_control else "constant_alpha"
     (OUTPUT / f"primary_{suffix}.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n"
     )
