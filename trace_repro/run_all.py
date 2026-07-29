@@ -169,6 +169,21 @@ def main() -> int:
                 negative=True,
             )
         )
+    if "claim_1_attribution" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim1_exact_attribution",
+                "trace_repro.claim1_attribution",
+                negative=False,
+            )
+        )
+        records.append(
+            invoke(
+                "claim1_corrected_attribution_control",
+                "trace_repro.claim1_attribution",
+                negative=True,
+            )
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,
