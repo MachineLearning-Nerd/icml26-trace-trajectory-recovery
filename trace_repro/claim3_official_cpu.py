@@ -130,9 +130,19 @@ def efficient_npchange_forward(
         # Each output row depends only on the matching input row. Therefore the
         # gradient of the output sum is exactly the diagonal extracted from the
         # released B x B Jacobian, while requiring O(BF) rather than O(B^2 F).
-        diagonal = torch.autograd.grad(
-            residual.sum(), inputs, create_graph=True
-        )[0][:, -1]
+        # The released functional Jacobian re-evaluates the network inside an
+        # enable_grad block. Do the same so Lightning validation (which runs
+        # under no_grad) retains the released behavior.
+        with torch.enable_grad():
+            derivative_inputs = (
+                inputs
+                if inputs.requires_grad
+                else inputs.detach().requires_grad_(True)
+            )
+            derivative_residual = self.gs[index](derivative_inputs)
+            diagonal = torch.autograd.grad(
+                derivative_residual.sum(), derivative_inputs, create_graph=True
+            )[0][:, -1]
         sum_log_abs_det_jacobian += torch.log(torch.abs(diagonal))
         residuals.append(residual)
     residual_array = torch.cat(residuals, dim=-1)
@@ -199,6 +209,19 @@ def audit_diagonal_jacobian_equivalence() -> dict:
         )
         for name in released_parameters
     }
+    with torch.no_grad():
+        validation_x = torch.randn(4, 3, 8)
+        validation_embeddings = torch.randn(4, 2)
+        released_validation_residual, released_validation_logdet = (
+            RELEASED_NPCHANGE_FORWARD(
+                released, validation_x, validation_embeddings
+            )
+        )
+        efficient_validation_residual, efficient_validation_logdet = (
+            efficient_npchange_forward(
+                efficient, validation_x, validation_embeddings
+            )
+        )
     torch.random.set_rng_state(state)
 
     checks = {
@@ -222,6 +245,23 @@ def audit_diagonal_jacobian_equivalence() -> dict:
             update_differences.values()
         )
         <= 1e-6,
+        "no_grad_validation_residual_max_abs_at_most_1e-7": float(
+            torch.max(
+                torch.abs(
+                    released_validation_residual
+                    - efficient_validation_residual
+                )
+            )
+        )
+        <= 1e-7,
+        "no_grad_validation_logdet_max_abs_at_most_1e-6": float(
+            torch.max(
+                torch.abs(
+                    released_validation_logdet - efficient_validation_logdet
+                )
+            )
+        )
+        <= 1e-6,
     }
     return {
         "method": (
@@ -241,6 +281,21 @@ def audit_diagonal_jacobian_equivalence() -> dict:
         ),
         "parameter_gradient_max_abs": max(gradient_differences.values()),
         "adam_step_parameter_max_abs": max(update_differences.values()),
+        "no_grad_validation_residual_max_abs": float(
+            torch.max(
+                torch.abs(
+                    released_validation_residual
+                    - efficient_validation_residual
+                )
+            )
+        ),
+        "no_grad_validation_logdet_max_abs": float(
+            torch.max(
+                torch.abs(
+                    released_validation_logdet - efficient_validation_logdet
+                )
+            )
+        ),
         "checks": checks,
         "all_checks_passed": all(checks.values()),
     }
