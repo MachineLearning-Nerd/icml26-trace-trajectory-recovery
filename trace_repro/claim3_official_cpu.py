@@ -16,6 +16,7 @@ import random
 import shutil
 import sys
 import time
+from copy import deepcopy
 
 import numpy as np
 import torch
@@ -30,6 +31,7 @@ sys.path.insert(0, str(VENDOR))
 
 from trace_crl.datasets.sim_dataset import TimeVaryingDataset  # noqa: E402
 from trace_crl.modules.change import TimeVaryingProcess  # noqa: E402
+from trace_crl.modules.components.transition import NPChangeTransitionPrior  # noqa: E402
 from trace_crl.modules.metrics.correlation import compute_mcc  # noqa: E402
 from trace_crl.tools.gen_dataset import pnl_additive_structure  # noqa: E402
 from trace_crl.tools.gen_trajectory import (  # noqa: E402
@@ -39,6 +41,8 @@ from trace_crl.tools.gen_trajectory import (  # noqa: E402
     traj_medium,
     traj_simple,
 )
+
+RELEASED_NPCHANGE_FORWARD = NPChangeTransitionPrior.forward
 
 
 def cpu_allocation(estimated: int) -> dict:
@@ -88,6 +92,155 @@ def audit_tensorized_equivalence(
             "one-time float32 tensor materialization at five fixed indices"
         ),
         "indices": indices,
+        "checks": checks,
+        "all_checks_passed": all(checks.values()),
+    }
+
+
+def efficient_npchange_forward(
+    self: NPChangeTransitionPrior,
+    x: torch.Tensor,
+    embeddings: torch.Tensor,
+    masks=None,
+):
+    """Compute the released diagonal Jacobian without materializing B x B."""
+    batch_size, length, input_dim = x.shape
+    embeddings = self.fc(embeddings)
+    num_windows = length - self.L
+    embeddings = (
+        embeddings.unsqueeze(1)
+        .repeat(1, num_windows, 1)
+        .reshape(-1, embeddings.shape[-1])
+    )
+    windows = x.unfold(dimension=1, size=self.L + 1, step=1)
+    windows = torch.swapaxes(windows, 2, 3)
+    windows = windows.reshape(-1, self.L + 1, input_dim)
+    current, history = windows[:, -1:], windows[:, :-1]
+    history = history.reshape(-1, self.L * input_dim)
+    residuals = []
+    sum_log_abs_det_jacobian = 0
+    for index in range(input_dim):
+        if masks is None:
+            inputs = torch.cat((embeddings, history, current[:, :, index]), dim=-1)
+        else:
+            inputs = torch.cat(
+                (embeddings, history * masks[index], current[:, :, index]), dim=-1
+            )
+        residual = self.gs[index](inputs)
+        # Each output row depends only on the matching input row. Therefore the
+        # gradient of the output sum is exactly the diagonal extracted from the
+        # released B x B Jacobian, while requiring O(BF) rather than O(B^2 F).
+        diagonal = torch.autograd.grad(
+            residual.sum(), inputs, create_graph=True
+        )[0][:, -1]
+        sum_log_abs_det_jacobian += torch.log(torch.abs(diagonal))
+        residuals.append(residual)
+    residual_array = torch.cat(residuals, dim=-1)
+    residual_array = residual_array.reshape(batch_size, -1, input_dim)
+    logabsdet = torch.sum(
+        sum_log_abs_det_jacobian.reshape(batch_size, length - self.L), dim=1
+    )
+    return residual_array, logabsdet
+
+
+def audit_diagonal_jacobian_equivalence() -> dict:
+    """Compare released and efficient paths through a complete optimizer step."""
+    state = torch.random.get_rng_state()
+    torch.manual_seed(260121135)
+    released = NPChangeTransitionPrior(
+        lags=2,
+        latent_size=8,
+        embedding_dim=2,
+        num_layers=3,
+        hidden_dim=128,
+    )
+    efficient = deepcopy(released)
+    x_released = torch.randn(4, 3, 8, requires_grad=True)
+    x_efficient = x_released.detach().clone().requires_grad_(True)
+    embeddings_released = torch.randn(4, 2, requires_grad=True)
+    embeddings_efficient = embeddings_released.detach().clone().requires_grad_(True)
+
+    released_residual, released_logdet = RELEASED_NPCHANGE_FORWARD(
+        released, x_released, embeddings_released
+    )
+    efficient_residual, efficient_logdet = efficient_npchange_forward(
+        efficient, x_efficient, embeddings_efficient
+    )
+    released_objective = released_residual.square().mean() + released_logdet.mean()
+    efficient_objective = efficient_residual.square().mean() + efficient_logdet.mean()
+    released_objective.backward()
+    efficient_objective.backward()
+
+    released_parameters = dict(released.named_parameters())
+    efficient_parameters = dict(efficient.named_parameters())
+    gradient_differences = {
+        name: float(
+            torch.max(
+                torch.abs(
+                    released_parameters[name].grad
+                    - efficient_parameters[name].grad
+                )
+            )
+        )
+        for name in released_parameters
+    }
+    released_optimizer = torch.optim.Adam(released.parameters(), lr=5e-4)
+    efficient_optimizer = torch.optim.Adam(efficient.parameters(), lr=5e-4)
+    released_optimizer.step()
+    efficient_optimizer.step()
+    update_differences = {
+        name: float(
+            torch.max(
+                torch.abs(
+                    released_parameters[name].detach()
+                    - efficient_parameters[name].detach()
+                )
+            )
+        )
+        for name in released_parameters
+    }
+    torch.random.set_rng_state(state)
+
+    checks = {
+        "residual_max_abs_at_most_1e-7": float(
+            torch.max(torch.abs(released_residual - efficient_residual))
+        )
+        <= 1e-7,
+        "logdet_max_abs_at_most_1e-6": float(
+            torch.max(torch.abs(released_logdet - efficient_logdet))
+        )
+        <= 1e-6,
+        "objective_abs_at_most_1e-6": float(
+            torch.abs(released_objective - efficient_objective)
+        )
+        <= 1e-6,
+        "parameter_gradient_max_abs_at_most_1e-5": max(
+            gradient_differences.values()
+        )
+        <= 1e-5,
+        "adam_step_parameter_max_abs_at_most_1e-6": max(
+            update_differences.values()
+        )
+        <= 1e-6,
+    }
+    return {
+        "method": (
+            "compare the released autograd.functional.jacobian diagonal with "
+            "autograd.grad(output.sum(), inputs), including all parameter "
+            "gradients and one Adam update on a seeded batch"
+        ),
+        "batch_size": 4,
+        "residual_max_abs": float(
+            torch.max(torch.abs(released_residual - efficient_residual))
+        ),
+        "logdet_max_abs": float(
+            torch.max(torch.abs(released_logdet - efficient_logdet))
+        ),
+        "objective_abs": float(
+            torch.abs(released_objective - efficient_objective)
+        ),
+        "parameter_gradient_max_abs": max(gradient_differences.values()),
+        "adam_step_parameter_max_abs": max(update_differences.values()),
         "checks": checks,
         "all_checks_passed": all(checks.values()),
     }
@@ -278,6 +431,11 @@ def main() -> int:
     torch.manual_seed(config["seed"])
     torch.set_num_threads(config["estimated_cores"])
     torch.set_num_interop_threads(1)
+    diagonal_jacobian_equivalence = audit_diagonal_jacobian_equivalence()
+    if not diagonal_jacobian_equivalence["all_checks_passed"]:
+        print(json.dumps(diagonal_jacobian_equivalence, indent=2, sort_keys=True))
+        return 1
+    NPChangeTransitionPrior.forward = efficient_npchange_forward
 
     # The released generator writes relative to its current working directory.
     dataset_root = ROOT / "datasets"
@@ -404,13 +562,14 @@ def main() -> int:
             "validation_mcc_before": before_mcc,
             "validation_mcc_after_training": after_mcc,
             "tensorized_equivalence": equivalence,
+            "diagonal_jacobian_equivalence": diagonal_jacobian_equivalence,
             "deviations": config["deviations"],
             "verdict": "RESOURCE_CALIBRATION_ONLY",
         }
         OUTPUT.mkdir(parents=True, exist_ok=True)
-        output_path = OUTPUT / "tensorized_cpu_calibration.json"
+        output_path = OUTPUT / "diagonal_jacobian_cpu_calibration.json"
         output_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
-        print("\nTRACE_TENSORIZED_CPU_CALIBRATION")
+        print("\nTRACE_DIAGONAL_JACOBIAN_CPU_CALIBRATION")
         print(json.dumps(result, indent=2, sort_keys=True))
         print(f"generated_raw_output={output_path.relative_to(ROOT)}")
         checks = [
@@ -418,6 +577,7 @@ def main() -> int:
             batches_per_epoch > 3000,
             training_seconds > 0,
             equivalence["all_checks_passed"],
+            diagonal_jacobian_equivalence["all_checks_passed"],
         ]
         return 0 if all(checks) else 1
 
@@ -469,6 +629,7 @@ def main() -> int:
         "validation_mcc_after_training": after_mcc,
         "trajectory_evaluation": trajectory_results,
         "tensorized_equivalence": equivalence,
+        "diagonal_jacobian_equivalence": diagonal_jacobian_equivalence,
         "preregistered_checks": preregistered_checks,
         "deviations": config["deviations"],
         "verdict": (
@@ -491,6 +652,7 @@ def main() -> int:
         np.isfinite(after_mcc),
         training_seconds > 0,
         equivalence["all_checks_passed"],
+        diagonal_jacobian_equivalence["all_checks_passed"],
         all(preregistered_checks.values()),
     ]
     return 0 if all(checks) else 1

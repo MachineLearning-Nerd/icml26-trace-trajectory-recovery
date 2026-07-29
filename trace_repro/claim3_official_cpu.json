@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "purpose": "one-epoch compute-only calibration of a bitwise-equivalent tensorized loader at 4 Torch threads",
+  "purpose": "one-epoch compute-only calibration of an equivalent diagonal-Jacobian implementation at 4 Torch threads",
   "seed": 770,
   "data_seed": 42,
   "estimated_cores": 4,
@@ -28,6 +28,7 @@
     "CPU execution instead of the paper's A100 GPU",
     "one epoch instead of 100; this node is resource calibration and cannot verify a scientific claim",
     "the official Dataset casts each item to float32 on every access; this calibration materializes exactly the same float32 tensors once and machine-checks bitwise equality at fixed indices",
+    "the released transition prior materializes a full batch-by-batch Jacobian and extracts its diagonal; this calibration computes the identical diagonal as grad(output.sum(), input) and checks forward values, parameter gradients, and one Adam update against the released path",
     "num_workers is zero to avoid interprocess copies of an already memory-resident dataset"
   ]
 }

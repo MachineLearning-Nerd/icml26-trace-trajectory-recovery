@@ -2,12 +2,12 @@
   "schema_version": 1,
   "enabled_checks": [
     "claim_2_theorem_4_3",
-    "claim_3_tensorized_cpu_calibration"
+    "claim_3_diagonal_jacobian_cpu_calibration"
   ],
   "paper_id": "2601.21135v2",
   "paper_source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
   "selected_compute_backend": "hf",
   "selected_compute_flavor": "cpu-upgrade",
   "estimated_cores": 4,
-  "runtime_estimate": "one exact paper-scale calibration epoch with a bitwise-equivalent tensorized loader: under 30 minutes on 4 CPU threads"
+  "runtime_estimate": "one exact paper-scale calibration epoch with an equivalent diagonal-Jacobian implementation: under 10 minutes on 4 CPU threads"
 }
