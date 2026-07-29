@@ -113,6 +113,14 @@ def main() -> int:
                 negative=True,
             )
         )
+    if "claim_3_tensorized_cpu_calibration" in CONFIG["enabled_checks"]:
+        records.append(
+            invoke(
+                "claim3_tensorized_cpu_calibration",
+                "trace_repro.claim3_official_cpu",
+                negative=False,
+            )
+        )
     total_runtime = time.perf_counter() - campaign_started
     summary = {
         "schema_version": 1,
