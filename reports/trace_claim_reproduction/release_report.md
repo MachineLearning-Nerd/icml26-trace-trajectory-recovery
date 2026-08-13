@@ -35,7 +35,7 @@ claims honestly BLOCKED where public capabilities are insufficient.
 ## Scientific result and compute
 
 The winning scientific branch is
-[`orx/exact-100-epoch-learned-trace-via-equivalent-jac`](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/exact-100-epoch-learned-trace-via-equivalent-jac)
+[`orx/exact-100-epoch-learned-trace-via-equivalent-jac`](https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery/tree/audit/c5-equivalent-jacobian)
 at Git `569f57563cf6a98cb9ac366eb4191859a0325045`. Run
 `2e12401a-1b60-4163-8932-d8ef1c2f11a0` used HF `cpu-upgrade`, exposed 64
 CPUs, allocated four Torch intra-op threads and one inter-op thread, and used

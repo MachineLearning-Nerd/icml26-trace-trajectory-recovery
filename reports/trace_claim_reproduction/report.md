@@ -150,9 +150,9 @@ rate, that run cost approximately `$0.0926`. No GPU was used.
 
 Important branches:
 
-- [terminal exact learned TRACE and unseen-state result](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/exact-100-epoch-learned-trace-via-equivalent-jac)
-- [Claim 6 four-route assessment](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/claim-6-four-route-final-assessment)
-- [frozen cumulative regression](https://github.com/MachineLearning-Nerd/icml26-repro-xRN1Ym2hoa-trace-trajectory-recovery-for-continuous-mechanism-evolution-in-causal-repre/tree/orx/frozen-cumulative-candidate-regression)
+- [terminal exact learned TRACE and unseen-state result](https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery/tree/audit/c5-equivalent-jacobian)
+- [Claim 6 four-route assessment](https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery/tree/audit/c6-four-route-assessment)
+- [frozen cumulative regression](https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery/tree/historical/cumulative-regression)
 
 ## Assessment
 
