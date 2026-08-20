@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "paper": "TRACE: Trajectory Recovery for Continuous Mechanism Evolution in Causal Representation Learning",
+  "arxiv": "2601.21135",
+  "submission": "xRN1Ym2hoa",
+  "phase": "standardized_claim_audit_publication",
+  "overall_status": "PARTIAL_C1_C2_NARROWLY_FALSIFIED_C5_VERIFIED_C3_C4_C6_BLOCKED_HISTORICAL_SCORE_4_OF_12_NO_CURRENT_SCORE",
+  "next_action": "Retain the narrow C1/C2 falsifications and complete the missing comparator, real-data, checkpoint, and metric-capability work before changing blocked statuses.",
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "author_endorsement_claimed": false,
+  "claim_statuses": {
+    "C1": "FALSIFIED_NARROW",
+    "C2": "FALSIFIED_NARROW",
+    "C3": "BLOCKED_COMPARATOR",
+    "C4": "BLOCKED_REAL_DATA",
+    "C5": "VERIFIED_SCOPED",
+    "C6": "BLOCKED_CHECKPOINT_METRIC"
+  },
+  "source": {
+    "version": "arXiv 2601.21135v2",
+    "sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
+    "official_code_sha": "f71d7ed89f721cfe4a134cf04be0e6a05795e4b6"
+  },
+  "repository": {
+    "owner": "MachineLearning-Nerd",
+    "canonical_email": "MachineLearning-Nerd@users.noreply.github.com",
+    "github": "https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery",
+    "branches": 22,
+    "pre_publication_reachable_commits": 61,
+    "recovery_bundle_sha256": "8260d3069ce7328ff17aee023111c6a100d86755596298cdf91fbb6a7b7a06df"
+  },
+  "historical_external_result": {
+    "live_judge_score": "4/12",
+    "current_score_claim": false,
+    "candidate_space": "DineshAI/xRN1Ym2hoa",
+    "forecast": "6-8/12"
+  }
+}

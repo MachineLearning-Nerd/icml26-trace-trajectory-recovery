@@ -1,5 +1,10 @@
 # TRACE claim-by-claim reproduction
 
+> **Audit status:** Claims 1 and 2 are narrowly falsified in their exact
+> tested scopes; Claim 5 is verified; Claims 3, 4, and 6 are blocked. The
+> historical judge score is `4/12`; no current score or author endorsement is
+> claimed.
+
 Current verification supersedes the historical toy verifier where a claim page
 says so. The live judged score remains **4/12** until the evaluator judges a new
 revision; no score increase is claimed here.

@@ -44,5 +44,4 @@ This file records the transition from generated `orx/*` branch names to descript
 - Every clean branch must contain the same `README.md` and `branch-audit.md` documentation once published.
 - Historical `orx/*` names may appear here as old-name provenance, but should not remain as live GitHub branch names or links.
 - A blocked, historical, or diagnostic route must not be rewritten as final `VERIFIED` or `FALSIFIED` evidence.
-- Maintenance commits are authored and committed as `MachineLearning-Nerd <37579156+MachineLearning-Nerd@users.noreply.github.com>`.
-
+- Maintenance commits are authored and committed as `MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>`.

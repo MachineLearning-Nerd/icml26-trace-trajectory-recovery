@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "paper": "xRN1Ym2hoa",
+  "arxiv": "2601.21135v2",
+  "source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
+  "overall_verdict": "PARTIAL_C1_C2_NARROWLY_FALSIFIED_C5_VERIFIED_C3_C4_C6_BLOCKED",
+  "claim_statuses": {
+    "C1": "FALSIFIED_NARROW",
+    "C2": "FALSIFIED_NARROW",
+    "C3": "BLOCKED_COMPARATOR",
+    "C4": "BLOCKED_REAL_DATA",
+    "C5": "VERIFIED_SCOPED",
+    "C6": "BLOCKED_CHECKPOINT_METRIC"
+  },
+  "historical_external_result": {
+    "live_judge_score": "4/12",
+    "current_score_claim": false,
+    "forecast": "6-8/12"
+  },
+  "publication": {
+    "publication_allowed": false,
+    "author_endorsement_claimed": false
+  },
+  "boundary": "C1 and C2 are narrow exact-scope falsifications; C5 is a finite paper-scale verification; C3, C4, and C6 remain blocked by missing capabilities."
+}

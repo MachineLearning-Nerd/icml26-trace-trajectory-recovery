@@ -4,6 +4,16 @@ Independent reproduction audit for [“TRACE: Trajectory Recovery for Continuous
 
 The repository is published as [`icml26-trace-trajectory-recovery`](https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery).
 
+> **Audit status:** `PARTIAL_C1_C2_NARROWLY_FALSIFIED_C5_VERIFIED_C3_C4_C6_BLOCKED_HISTORICAL_SCORE_4_OF_12_NO_CURRENT_SCORE`
+>
+> Claims 1 and 2 are narrowly falsified for the exact theorem attribution and
+> displayed Theorem 4.3 bound tested. Claim 5 is verified on the paper-scale
+> unseen-state route. Claims 3, 4, and 6 remain blocked by missing comparator,
+> real-data, checkpoint, and metric-identifiability capabilities. The
+> historical judge score is 4/12; the 6–8 estimate is forecast only. See
+> [`STATUS.md`](STATUS.md), [`CLAIM_EVIDENCE.md`](CLAIM_EVIDENCE.md), and
+> [`REPORT.md`](REPORT.md).
+
 ## What the paper does
 
 TRACE studies causal representation learning when mechanisms do not switch instantly between discrete domains. It models a changing mechanism as a convex combination of finitely many atomic mechanisms with time-varying mixing coefficients.
@@ -44,6 +54,12 @@ uv run --frozen python -m trace_repro.run_all
 The fixed command is inherited by every experiment branch. It regenerates claim outputs, independent checker results, release audits, and raw evidence. It exits nonzero when an accepted claim contract or expected negative control fails.
 
 The paper-scale learned run used Hugging Face `cpu-upgrade`, four Torch threads, and no GPU. It took approximately 3.086 hours for the 200,000-sequence, 100-epoch synthetic run. The exact K=10 Claim 6 protocol projects to roughly 295 CPU hours and was stopped after calibration; do not mistake that calibration for scientific evidence.
+
+The machine-readable claim ledger is [`claims.json`](claims.json), the
+production-path manifest is [`EVIDENCE_MANIFEST.json`](EVIDENCE_MANIFEST.json),
+and [`verify_final.py`](verify_final.py) checks the published documentation,
+source pin, branch set, score boundary, and attribution without launching the
+paper-scale training run.
 
 For the tutorial:
 
@@ -87,6 +103,10 @@ Branch names describe an evidence route; they do not imply that the route produc
 - **Paper:** [arXiv:2601.21135v2](https://arxiv.org/abs/2601.21135)
 - **Official code:** [shichengf/trace](https://github.com/shichengf/trace)
 
+The complete source/version audit is [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md), the
+repository citation is [`CITATION.cff`](CITATION.cff), and the author
+thank-you note is [`AUTHOR_THANK_YOU.md`](AUTHOR_THANK_YOU.md).
+
 ### Citation
 
 ```bibtex
@@ -107,4 +127,4 @@ Thank you to Shicheng Fan, Kun Zhang, and Lu Cheng for developing TRACE, formali
 
 ## Maintenance attribution
 
-Repository documentation, branch naming, audit notes, and maintenance commits in this collection are attributed to **MachineLearning-Nerd**. Scientific authorship and ownership of the paper’s ideas remain with the paper authors.
+Repository documentation, branch naming, audit notes, and maintenance commits in this collection are attributed to **MachineLearning-Nerd** with canonical identity `MachineLearning-Nerd <MachineLearning-Nerd@users.noreply.github.com>`. Scientific authorship and ownership of the paper’s ideas remain with the paper authors.

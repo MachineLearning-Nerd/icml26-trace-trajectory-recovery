@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this audit, cite both this repository and the original paper."
+type: software
+title: "Independent audit of TRACE trajectory recovery"
+version: "1.0.0"
+date-released: 2026-08-20
+authors:
+  - name: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery"
+url: "https://github.com/MachineLearning-Nerd/icml26-trace-trajectory-recovery"
+abstract: "Scoped claim-by-claim audit of TRACE theorem attribution, trajectory-risk bounds, learned unseen-state recovery, real-data availability, comparator reproducibility, and full-W metric behavior."
+keywords:
+  - causal representation learning
+  - mechanism evolution
+  - trajectory recovery
+  - mixture of experts
+  - reproducibility
+preferred-citation:
+  type: article
+  title: "TRACE: Trajectory Recovery for Continuous Mechanism Evolution in Causal Representation Learning"
+  authors:
+    - family-names: Fan
+      given-names: Shicheng
+    - family-names: Zhang
+      given-names: Kun
+    - family-names: Cheng
+      given-names: Lu
+  year: 2026
+  url: "https://arxiv.org/abs/2601.21135"

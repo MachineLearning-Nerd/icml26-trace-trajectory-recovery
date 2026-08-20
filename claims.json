@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "TRACE: Trajectory Recovery for Continuous Mechanism Evolution in Causal Representation Learning",
+    "arxiv": "2601.21135",
+    "version": "v2",
+    "submission": "xRN1Ym2hoa",
+    "authors": ["Shicheng Fan", "Kun Zhang", "Lu Cheng"],
+    "source_sha256": "24c2ba7f5468f0a9f9ae414c8de764821e8c0655ec5b1c72807cf6834096427d",
+    "official_code_sha": "f71d7ed89f721cfe4a134cf04be0e6a05795e4b6"
+  },
+  "overall_status": "PARTIAL_C1_C2_NARROWLY_FALSIFIED_C5_VERIFIED_C3_C4_C6_BLOCKED_HISTORICAL_SCORE_4_OF_12_NO_CURRENT_SCORE",
+  "claims": [
+    {
+      "id": "C1",
+      "name": "theorem_4_1_attribution",
+      "status": "FALSIFIED_NARROW",
+      "paper_anchor": "Theorem 4.1 and Section 4.2",
+      "production": ["trace_repro/claim1_attribution.py", ".openresearch/artifacts/claim_1/run_outputs/exact_attribution.json"],
+      "controls": ["corrected Theorems 4.1-4.3 attribution is not contradicted", "independent source-hash checker"],
+      "scope": "Falsifies the exact joint attribution; does not falsify Theorem 4.1's latent-only conclusion.",
+      "metrics": {"exact_attribution_contradiction": true, "corrected_attribution_contradiction": false}
+    },
+    {
+      "id": "C2",
+      "name": "displayed_theorem_4_3_bound",
+      "status": "FALSIFIED_NARROW",
+      "paper_anchor": "Theorems 4.2-4.3 and Equation (7)",
+      "production": ["trace_repro/claim2_theorem43.py", "trace_repro/claim2_independent.py", ".openresearch/artifacts/claim_2/raw_results.json"],
+      "controls": ["sigma=0 exact control", "sigma=0 independent control"],
+      "scope": "Assumption-valid constant path at T=64; exact displayed RHS is zero while estimator risk is positive.",
+      "metrics": {"exact_expected_mse": 0.03404667009563923, "displayed_bound_rhs": 0.0, "empirical_constant_mode_mse": 0.003966053385246882}
+    },
+    {
+      "id": "C3",
+      "name": "synthetic_trace_vs_nctrl",
+      "status": "BLOCKED_COMPARATOR",
+      "paper_anchor": "Table 1 and Figure 3",
+      "production": ["trace_repro/claim3_official_cpu.py", "trace_repro/claim3_nctrl_audit.py", ".openresearch/artifacts/claim_3/run_outputs"],
+      "controls": ["independent TRACE correlation checker", "time-permutation control", "complete-release control"],
+      "scope": "TRACE side passes at paper scale; full claim requires unavailable NCTRL-hard and NCTRL-soft assets.",
+      "metrics": {"trace_mean_correlation": 0.9735660404230428, "trace_simple_mean_correlation": 0.9866131551522728, "learned_encoder_mcc": 0.9361061058279188}
+    },
+    {
+      "id": "C4",
+      "name": "uavdt_and_mocap_real_data",
+      "status": "BLOCKED_REAL_DATA",
+      "paper_anchor": "UAVDT and CMU MoCap results",
+      "production": ["trace_repro/claim4_release_audit.py", "trace_repro/claim4_release_independent.py", ".openresearch/artifacts/claim_4/run_outputs"],
+      "controls": ["injected complete-release negative control", "independent AST/default checker"],
+      "scope": "Missing data, checkpoints, and real-data pipelines prevent fair verification; absence is not falsification.",
+      "metrics": {"released_file_count": 46, "paper_release_default_matches": 0, "counterexample_established": false}
+    },
+    {
+      "id": "C5",
+      "name": "unseen_intermediate_mechanism_states",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Section 3.2 and Table 14",
+      "production": ["trace_repro/claim3_official_cpu.py", "trace_repro/claim3_learned_checker.py", ".openresearch/artifacts/claim_5"],
+      "controls": ["time-permutation control", "five fresh observation seeds", "non-vertex row count"],
+      "scope": "Paper-scale finite synthetic path after pure-vertex training; one training seed and CPU-equivalent implementation.",
+      "metrics": {"simple_mean_correlation": 0.9866131551522728, "simple_95ci": [0.9815189525287645, 0.991707357775781], "learned_mcc": 0.9361061058279188, "minimum_unseen_intermediate_fraction": 0.96}
+    },
+    {
+      "id": "C6",
+      "name": "geometric_bottleneck_and_full_w_metric",
+      "status": "BLOCKED_CHECKPOINT_METRIC",
+      "paper_anchor": "Section 6.5 and Appendix E.4 Table 12",
+      "production": ["trace_repro/claim6_final_assessment.py", "trace_repro/claim6_w_metric.py", ".openresearch/artifacts/claim_6/four_routes.md"],
+      "controls": ["constant-alpha zero-temporal-signal control", "independent manual Pearson checker", "mandatory falsification route"],
+      "scope": "Metric blind spot and absent learned checkpoint block exact learned-model verification; the control does not falsify printed learned values.",
+      "metrics": {"constant_prediction_official_full_w_correlation": 0.9987418335229608, "w_temporal_variation_ratio": 1.474201499485795e-14, "projected_100_epoch_hours": 295.0, "valid_counterexample_found": false}
+    }
+  ]
+}
